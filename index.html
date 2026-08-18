@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="+U — one comfortable doorway to Whole Donuts and The Nurtured Chef.">
-  <title>+U | Welcome In</title>
-  <link rel="stylesheet" href="styles.css?v=menu1">
+  <meta name="description" content="+U — walk into the community table and choose today's menu.">
+  <title>+U | The Community Counter</title>
+  <link rel="stylesheet" href="styles.css?v=counter1">
 </head>
 <body>
   <aside class="rail" aria-label="+U menu">
@@ -15,47 +15,112 @@
       <a href="#tnc" data-branch="tnc"><span>TNC</span><small>The Nurtured Chef</small></a>
     </nav>
   </aside>
+
   <main>
     <section id="home" class="panel hero" aria-labelledby="home-title">
-      <p class="eyebrow">+U-0001 · ONE DOOR · TWO SIDES</p>
-      <h1 id="home-title">Welcome in.</h1>
-      <p class="lede">Please make yourself comfy. Choose the side that fits your appetite. You can always come back here.</p>
-      <div class="choices" aria-label="Choose your menu">
-        <a class="choice awd" href="#awd"><strong>Whole Donuts</strong><span>Open this side for the Whole Donuts universe, community, and store.</span></a>
-        <a class="choice tnc" href="#tnc"><strong>The Nurtured Chef</strong><span>Open the other side for food, care, the foundation, and the chef store.</span></a>
+      <p class="eyebrow">THE COMMUNITY COUNTER · <span id="daily-date">TODAY</span></p>
+      <h1 id="home-title">Pull up a seat.</h1>
+      <p class="lede">Welcome in. Today’s menu is made by community: no judgment—just try, learn, and leave a crumb for the next person.</p>
+
+      <div class="counter" aria-label="Today's community menu">
+        <div class="counter-head">
+          <div><p class="eyebrow">BEFORE THE FIRST CRUMB DROPS</p><h2>+U changes everything.</h2></div>
+          <p>Tap a course. Order only what fits.</p>
+        </div>
+
+        <div class="course-tabs" role="tablist" aria-label="Menu courses">
+          <button type="button" data-menu="bits" role="tab">BITS</button>
+          <button type="button" data-menu="bites" role="tab">BITES</button>
+          <button type="button" data-menu="biggies" role="tab">BIGGIES</button>
+          <button type="button" data-menu="bombs" role="tab">BOMBS</button>
+        </div>
+
+        <section class="course" data-course="bits">
+          <h3>Bits <small>· tapas &amp; small plates</small></h3>
+          <div class="course-grid">
+            <article class="dish"><strong>Say hello</strong><p>Walk in without a name, title, résumé, or explanation.</p></article>
+            <article class="dish"><strong>Try one thing</strong><p>Explore one idea, skill, tool, or cause without judgment.</p></article>
+            <article class="dish"><strong>Leave one crumb</strong><p>Share one useful lesson so the next guest starts farther ahead.</p></article>
+          </div>
+        </section>
+
+        <section class="course" data-course="bites" hidden>
+          <h3>Bites <small>· you may need a plate</small></h3>
+          <div class="course-grid">
+            <article class="dish"><strong>Learn together</strong><p>Community-made information, experiments, and practical guidance.</p></article>
+            <article class="dish"><strong>Make together</strong><p>Small services and projects people already need, made more human.</p></article>
+            <article class="dish"><strong>Serve a cause</strong><p>Turn a useful action into a repeatable effect for someone else.</p></article>
+          </div>
+        </section>
+
+        <section class="course" data-course="biggies" hidden>
+          <h3>Biggies <small>· you may need a bib</small></h3>
+          <div class="course-grid">
+            <article class="dish"><strong>Build an appetite</strong><p>Shape bigger community services without gatekeepers or borrowed prestige.</p></article>
+            <article class="dish"><strong>Bring your table</strong><p>Connect Whole Donuts, TNC, Table928, and future community tables through +U.</p></article>
+            <article class="dish"><strong>Cause &amp; effect</strong><p>Measure what changed, learn honestly, and improve tomorrow’s menu.</p></article>
+          </div>
+        </section>
+
+        <section class="course" data-course="bombs" hidden>
+          <h3>BOMBS <small>· desserts &amp; the register</small></h3>
+          <div class="course-grid">
+            <article class="dish"><strong>Whole Donuts store</strong><p><a href="https://wholedonuts.buzz/">Browse wholedonuts.buzz</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
+            <article class="dish"><strong>TNC chef store</strong><p><a href="https://thenutur3dchef.com/">Browse thenutur3dchef.com</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
+            <article class="dish" id="free-merch"><strong>Free merch &amp; information</strong><p>Community drops will appear here when available. No purchase is required to sit at the table.</p></article>
+          </div>
+
+          <div class="change-box">
+            <p><strong>Your bill:</strong> curiosity, cause, and effect.<br><strong>Your change:</strong> a private +U QR that is yours on this device.</p>
+            <button id="make-pass" type="button">Receive your +U change</button>
+            <div class="pass-card" id="pass-card" hidden>
+              <img id="pass-qr" alt="Your private +U QR">
+              <p><strong id="pass-name"></strong>This starts your invisible rewards trail on this device. No name, face, email, or payment information is requested.</p>
+            </div>
+          </div>
+
+          <div class="fine-print">
+            <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Rewards and apps are an early community concept and may change. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page currently stores only the +U pass and last-visit time in this browser; clearing browser storage removes them. Do not submit private, health, financial, or children’s information here.
+            <details><summary>Community table agreement</summary><p>Participate lawfully and respectfully. Community information is general information, not medical, legal, financial, or professional advice. No harassment, exploitation, impersonation, unsafe activity, or promises of guaranteed results. External links and community contributions remain the responsibility of their providers and authors.</p></details>
+          </div>
+        </section>
+      </div>
+
+      <div class="choices" aria-label="Open either side of the menu">
+        <a class="choice awd" href="#awd"><strong>Whole Donuts</strong><span>Community, experiments, services, and the .buzz store.</span></a>
+        <a class="choice tnc" href="#tnc"><strong>The Nurtured Chef</strong><span>Food, care, the foundation, and the Nutur3d Chef store.</span></a>
       </div>
       <p class="promise">No names. No faces. No entrance fee. Only cause and effect—yours or +U. Always treated by TNC.</p>
-      <figure class="qr-card">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=720x720&amp;data=https%3A%2F%2Fwenevergonnaclose.com%2F%3Fqr%3D0001" alt="QR code opening wenevergonnaclose.com">
-        <figcaption><strong>+U-0001</strong><span>One QR for every entrance</span></figcaption>
-      </figure>
     </section>
 
     <section id="awd" class="panel branch" aria-labelledby="awd-title">
-      <p class="eyebrow">SIDE ONE · WHOLE DONUTS</p>
-      <h2 id="awd-title">Something for every appetite.</h2>
-      <p>Explore Whole Donuts, find the community, or go straight to the store. Payment stays simple through $wholedonuts.</p>
+      <p class="eyebrow">WHOLE DONUTS · ONE SIDE OF THE MENU</p>
+      <h2 id="awd-title">Every appetite belongs.</h2>
+      <p>Explore the Whole Donuts universe, community, and store. Come back to the Counter whenever you want another course.</p>
       <div class="actions">
         <a class="button primary" href="https://wholedonuts.app/">Open Whole Donuts</a>
         <a class="button primary" href="https://wholedonuts.org/">Community &amp; cause</a>
-        <a class="button store" href="https://cash.app/$wholedonuts">Store · Pay $wholedonuts ↗</a>
+        <a class="button store" href="https://wholedonuts.buzz/">Browse the .buzz store</a>
+        <a class="button store" href="https://cash.app/$wholedonuts">Pay $wholedonuts ↗</a>
       </div>
-      <a class="back" href="#home">← Back to the menu</a>
+      <a class="back" href="#home">← Return to the Counter</a>
     </section>
 
     <section id="tnc" class="panel branch" aria-labelledby="tnc-title">
-      <p class="eyebrow">SIDE TWO · THE NURTURED CHEF</p>
+      <p class="eyebrow">THE NURTURED CHEF · THE OTHER SIDE</p>
       <h2 id="tnc-title">Always treated by TNC.</h2>
-      <p>Choose the chef experience, the cause, or the store. Everything stays connected through +U.</p>
+      <p>Choose the chef experience, the foundation, or the Nutur3d Chef store. Everything returns to the community table.</p>
       <div class="actions">
         <a class="button primary" href="https://thenurturedchef.com/">Open The Nurtured Chef</a>
         <a class="button primary" href="https://thenurturedchef.foundation/">Foundation &amp; cause</a>
-        <a class="button store" href="https://cash.app/$wholedonuts">Chef store · Pay $wholedonuts ↗</a>
+        <a class="button store" href="https://thenutur3dchef.com/">Browse the chef store</a>
+        <a class="button store" href="https://cash.app/$wholedonuts">Pay $wholedonuts ↗</a>
       </div>
-      <a class="back" href="#home">← Back to the menu</a>
+      <a class="back" href="#home">← Return to the Counter</a>
     </section>
   </main>
-  <footer><span>+U · Please make yourself comfy.</span><a id="branch-store" href="#home">Open the menu</a></footer>
-  <script src="app.js?v=de4462c"></script>
+
+  <footer><span>+U · Today’s menu is made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
+  <script src="app.js?v=counter1"></script>
 </body>
 </html>
