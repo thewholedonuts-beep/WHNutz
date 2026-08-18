@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="+U — walk into the community table and choose today's menu.">
-  <title>+U | The Community Counter</title>
+  <title>+U | Three Questions, One Community Table</title>
   <link rel="stylesheet" href="styles.css?v=counter1">
 </head>
 <body>
@@ -22,7 +22,43 @@
       <h1 id="home-title">Pull up a seat.</h1>
       <p class="lede">Welcome in. Today’s menu is made by community: no judgment—just try, learn, and leave a crumb for the next person.</p>
 
-      <div class="counter" aria-label="Today's community menu">
+      <section class="welcome-gate" id="welcome-gate" aria-labelledby="welcome-title">
+        <p class="eyebrow" id="welcome-progress">Question 1 of 3</p>
+        <h2 id="welcome-title">Three questions. Then your seat is ready.</h2>
+        <div class="welcome-step" data-question="1" data-key="branch">
+          <p>What sounds good right now?</p>
+          <div class="answer-grid">
+            <button type="button" data-answer="awd">Whole Donuts</button>
+            <button type="button" data-answer="tnc">The Nurtured Chef</button>
+            <button type="button" data-answer="both">Surprise me with +U</button>
+          </div>
+        </div>
+        <div class="welcome-step" data-question="2" data-key="course" hidden>
+          <p>How hungry are you?</p>
+          <div class="answer-grid">
+            <button type="button" data-answer="bits">Just a bit</button>
+            <button type="button" data-answer="bites">Give me a plate</button>
+            <button type="button" data-answer="biggies">Bring the bib</button>
+            <button type="button" data-answer="bombs">Dessert first</button>
+          </div>
+        </div>
+        <div class="welcome-step" data-question="3" data-key="intent" hidden>
+          <p>What would feel good today?</p>
+          <div class="answer-grid">
+            <button type="button" data-answer="learn">Learn something</button>
+            <button type="button" data-answer="make">Make something</button>
+            <button type="button" data-answer="help">Help something</button>
+            <button type="button" data-answer="wander">Just wander</button>
+          </div>
+        </div>
+        <div class="welcome-result" id="welcome-result" hidden>
+          <strong>Your seat is ready.</strong>
+          <span>Welcome to +U.</span>
+          <button type="button" id="restart-welcome">Ask me again</button>
+        </div>
+      </section>
+
+      <div class="counter" id="community-counter" aria-label="Today's community menu" hidden>
         <div class="counter-head">
           <div><p class="eyebrow">BEFORE THE FIRST CRUMB DROPS</p><h2>+U changes everything.</h2></div>
           <p>Tap a course. Order only what fits.</p>
@@ -121,6 +157,6 @@
   </main>
 
   <footer><span>+U · Today’s menu is made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
-  <script src="app.js?v=counter1"></script>
+  <script src="app.js?v=welcome3"></script>
 </body>
 </html>
