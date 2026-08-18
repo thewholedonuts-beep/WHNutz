@@ -34,11 +34,6 @@ Use these records for the root deployment:
 | A | @ | 185.199.111.153 | 600 |
 | CNAME | www | thewholedonuts-beep.github.io | 600 |
 
-Optional branch shortcuts (the root site itself uses hash routes):
-
-| Type | Host | Answer | TTL |
-|---|---|---|---|
-| CNAME | tnc | thewholedonuts-beep.github.io | 600 |
-| CNAME | awd | thewholedonuts-beep.github.io | 600 |
+No `tnc` or `awd` DNS records are required: the branches use `#tnc` and `#awd` routes on the primary domain, which avoids extra certificates and fragmented deployments.
 
 Do not deploy the `192.168.1.x` addresses in the private funnel configuration to public DNS; those are private placeholder addresses.
