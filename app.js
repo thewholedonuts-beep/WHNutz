@@ -64,9 +64,6 @@ function finishWelcome({scroll=true}={}){
   welcomeResult.querySelector('span').textContent='We opened '+course.toUpperCase()+' first. Change courses anytime.';
   showQuestion(4);
   if(scroll)counter.scrollIntoView({behavior:'smooth',block:'start'});
-  if(passRestoreState==='restored'&&passCard&&!passCard.hidden){
-    passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
-  }
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -172,6 +169,9 @@ function renderPass(renderQr){
   }
   if(passFallback)passFallback.hidden=true;
   safeSet('plusu-last-visit',new Date().toISOString());
+  if(passRestoreState==='restored'&&counter&&!counter.hidden){
+    passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
 }
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
 if(validPass(safeGet('plusu-pass')))renderPass(false);
@@ -183,6 +183,10 @@ if(passImage&&passFallback){
 }
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
   if(!displayedPass)renderPass(false);
+  if(!displayedPass){
+    copyPassLink.textContent='Copy unavailable';
+    return;
+  }
   const pass=displayedPass||getPass();
   const url=passUrl(pass);
   try{
