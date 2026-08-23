@@ -187,7 +187,7 @@ if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
     copyPassLink.textContent='Copy unavailable';
     return;
   }
-  const pass=displayedPass||getPass();
+  const pass=displayedPass;
   const url=passUrl(pass);
   try{
     if(navigator.clipboard&&navigator.clipboard.writeText){
