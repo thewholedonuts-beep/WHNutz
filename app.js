@@ -38,12 +38,12 @@ function openCourse(id,{focus=false}={}){
 menuButtons.forEach(button=>button.addEventListener('click',()=>openCourse(button.dataset.menu)));
 menuButtons.forEach((button,index)=>button.addEventListener('keydown',event=>{
   const {key}=event;
-  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(key))return;
+  if(!['ArrowLeft','ArrowRight','Home','End'].includes(key))return;
   event.preventDefault();
   let nextIndex=index;
   if(key==='Home')nextIndex=0;
   else if(key==='End')nextIndex=menuButtons.length-1;
-  else if(key==='ArrowLeft'||key==='ArrowUp')nextIndex=(index-1+menuButtons.length)%menuButtons.length;
+  else if(key==='ArrowLeft')nextIndex=(index-1+menuButtons.length)%menuButtons.length;
   else nextIndex=(index+1)%menuButtons.length;
   openCourse(menuButtons[nextIndex].dataset.menu,{focus:true});
 }));
