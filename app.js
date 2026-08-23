@@ -14,7 +14,6 @@ function syncBranch(){
 
 const menuButtons=[...document.querySelectorAll('[data-menu]')];
 const menuPanels=[...document.querySelectorAll('[data-course]')];
-menuButtons.forEach(button=>button.id='course-tab-'+button.dataset.menu);
 function openCourse(id){
   menuButtons.forEach(button=>{
     const active=button.dataset.menu===id;
@@ -88,7 +87,7 @@ const passLink=document.querySelector('#open-pass-link');
 const copyPassLink=document.querySelector('#copy-pass-link');
 const passFallback=document.querySelector('#pass-fallback');
 function validPass(value){
-  return /^[A-Za-z0-9+-]{3,80}$/.test(value);
+  return /^[A-Za-z0-9+\-]{3,80}$/.test(value);
 }
 function passUrl(pass){
   return 'https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
