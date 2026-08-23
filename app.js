@@ -98,6 +98,8 @@ function syncPassFromQuery(){
   if(!incoming)return;
   const pass=incoming.trim();
   if(!validPass(pass))return;
+  const existing=localStorage.getItem('plusu-pass');
+  if(existing&&existing!==pass)return;
   localStorage.setItem('plusu-pass',pass);
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
@@ -113,7 +115,7 @@ function getPass(){
   return pass;
 }
 function renderPass(renderQr){
-  if(!passCard||!passImage||!passName||!passButton)return;
+  if(!passCard||!passImage||!passName)return;
   const pass=getPass();
   const url=passUrl(pass);
   passName.textContent=pass;
@@ -128,7 +130,7 @@ function renderPass(renderQr){
     passImage.removeAttribute('src');
     passImage.alt='Your private +U QR is ready when requested';
   }
-  passButton.textContent=renderQr?'Refresh your +U QR':'Show your +U QR';
+  if(passButton)passButton.textContent=renderQr?'Refresh your +U QR':'Show your +U QR';
   if(copyPassLink)copyPassLink.textContent='Copy my private +U link';
   if(passFallback)passFallback.hidden=true;
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
