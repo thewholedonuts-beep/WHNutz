@@ -178,7 +178,9 @@ if(passImage&&passFallback){
   });
   passImage.addEventListener('load',()=>{passFallback.hidden=true});
 }
-if(passRestoreState==='restored'&&passCard)passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+if(passRestoreState==='restored'&&passCard&&counter&&!counter.hidden){
+  passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
   const pass=displayedPass||getPass();
   const url=passUrl(pass);
