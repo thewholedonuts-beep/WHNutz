@@ -4,6 +4,17 @@ const stores={
   awd:['Browse the Whole Donuts store','https://wholedonuts.buzz/'],
   tnc:['Browse the chef store','https://thenutur3dchef.com/']
 };
+const memoryStore=new Map();
+
+function safeGet(key){
+  try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
+}
+function safeSet(key,value){
+  try{localStorage.setItem(key,value)}catch(e){memoryStore.set(key,String(value))}
+}
+function safeRemove(key){
+  try{localStorage.removeItem(key)}catch(e){memoryStore.delete(key)}
+}
 
 function syncBranch(){
   const id=location.hash.slice(1);
@@ -43,7 +54,7 @@ function finishWelcome({scroll=true}={}){
   const branch=welcomeAnswers.branch;
   const course=welcomeAnswers.course||'bits';
   openCourse(course);
-  localStorage.setItem('plusu-welcome',JSON.stringify(welcomeAnswers));
+  safeSet('plusu-welcome',JSON.stringify(welcomeAnswers));
   gate.classList.add('complete');
   steps.forEach(step=>step.hidden=true);
   welcomeResult.hidden=false;
@@ -63,14 +74,14 @@ document.querySelectorAll('[data-answer]').forEach(button=>{
   });
 });
 
-const savedWelcome=localStorage.getItem('plusu-welcome');
+const savedWelcome=safeGet('plusu-welcome');
 if(savedWelcome){
   try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}catch(e){showQuestion(1)}
 }else if(gate){showQuestion(1)}
 
 const restart=document.querySelector('#restart-welcome');
 if(restart)restart.addEventListener('click',()=>{
-  localStorage.removeItem('plusu-welcome');
+  safeRemove('plusu-welcome');
   Object.keys(welcomeAnswers).forEach(key=>delete welcomeAnswers[key]);
   welcomeResult.hidden=true;
   counter.hidden=true;
@@ -100,25 +111,29 @@ function syncPassFromQuery(){
   if(!incoming)return 'none';
   const pass=incoming.trim();
   if(!validPass(pass))return 'invalid';
-  const existing=localStorage.getItem('plusu-pass');
-  if(existing&&!validPass(existing))localStorage.removeItem('plusu-pass');
-  const current=localStorage.getItem('plusu-pass');
+  const existing=safeGet('plusu-pass');
+  if(existing&&!validPass(existing))safeRemove('plusu-pass');
+  const current=safeGet('plusu-pass');
   if(current&&current!==pass){
     console.info('Ignoring incoming +U pass because this browser already has a different saved pass.');
     return 'kept-existing';
   }
-  localStorage.setItem('plusu-pass',pass);
-  localStorage.setItem('plusu-last-visit',new Date().toISOString());
+  safeSet('plusu-pass',pass);
+  safeSet('plusu-last-visit',new Date().toISOString());
   return 'restored';
 }
 const passRestoreState=syncPassFromQuery();
 function getPass(){
-  let pass=localStorage.getItem('plusu-pass');
+  let pass=safeGet('plusu-pass');
+  if(pass&&!validPass(pass)){
+    safeRemove('plusu-pass');
+    pass=null;
+  }
   if(!pass){
     const stamp=Date.now().toString(36).toUpperCase();
     const spice=Math.random().toString(36).slice(2,6).toUpperCase();
     pass='+U-'+stamp+'-'+spice;
-    localStorage.setItem('plusu-pass',pass);
+    safeSet('plusu-pass',pass);
   }
   return pass;
 }
@@ -148,10 +163,10 @@ function renderPass(renderQr){
         :'The QR image is requested from a third-party QR service only after you ask for it.';
   }
   if(passFallback)passFallback.hidden=true;
-  localStorage.setItem('plusu-last-visit',new Date().toISOString());
+  safeSet('plusu-last-visit',new Date().toISOString());
 }
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
-if(localStorage.getItem('plusu-pass'))renderPass(false);
+if(safeGet('plusu-pass'))renderPass(false);
 if(passImage&&passFallback){
   passImage.addEventListener('error',()=>{
     if(!passImage.hidden&&passImage.getAttribute('src'))passFallback.hidden=false;
