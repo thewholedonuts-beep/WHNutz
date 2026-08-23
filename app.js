@@ -25,15 +25,28 @@ function syncBranch(){
 
 const menuButtons=[...document.querySelectorAll('[data-menu]')];
 const menuPanels=[...document.querySelectorAll('[data-course]')];
-function openCourse(id){
+function openCourse(id,{focus=false}={}){
   menuButtons.forEach(button=>{
     const active=button.dataset.menu===id;
     button.classList.toggle('active',active);
     button.setAttribute('aria-selected',String(active));
+    button.tabIndex=active?0:-1;
+    if(active&&focus)button.focus();
   });
   menuPanels.forEach(panel=>panel.hidden=panel.dataset.course!==id);
 }
 menuButtons.forEach(button=>button.addEventListener('click',()=>openCourse(button.dataset.menu)));
+menuButtons.forEach((button,index)=>button.addEventListener('keydown',event=>{
+  const {key}=event;
+  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(key))return;
+  event.preventDefault();
+  let nextIndex=index;
+  if(key==='Home')nextIndex=0;
+  else if(key==='End')nextIndex=menuButtons.length-1;
+  else if(key==='ArrowLeft'||key==='ArrowUp')nextIndex=(index-1+menuButtons.length)%menuButtons.length;
+  else nextIndex=(index+1)%menuButtons.length;
+  openCourse(menuButtons[nextIndex].dataset.menu,{focus:true});
+}));
 if(menuButtons.length)openCourse('bits');
 
 const dateLabel=document.querySelector('#daily-date');
