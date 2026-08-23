@@ -5,13 +5,20 @@ This repository is the public deployment root for **wenevergonnaclose.com**.
 ## Experience map
 
 - **+U entry:** https://wenevergonnaclose.com/
+- **+U Movement brochure companion:** public-facing brochure guidance now lives on the landing page so the print flow and site flow stay aligned
 - **TNC — The Nurtured Chef**
   - content/funnel: https://thenutur3dchef.com/
   - e-store return: https://thenurturedchef.com/
 - **AWD — Whole Donuts**
   - content and e-store return: https://wholedonuts.org/
 
-The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link.
+The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link in the footer when its section is active.
+
+## Public behavior
+
+- The landing page includes Movement brochure structure, print guidance, and public contact information so the brochure can point directly back to the site.
+- The `?u=` query parameter restores a previously issued +U pass into the local browser storage for returning visits.
+- QR images are rendered through a third-party QR image service only when a visitor explicitly requests one from the page.
 
 ## Repository responsibilities
 

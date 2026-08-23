@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="+U — walk into the community table and choose today's menu.">
-  <title>+U | Three Questions, One Community Table</title>
-  <link rel="stylesheet" href="styles.css?v=counter1">
+  <meta name="description" content="+U Movement — walk into the community table, choose your next step, and carry the brochure companion with you.">
+  <title>+U Movement | Three Questions, One Community Table</title>
+  <link rel="stylesheet" href="styles.css?v=movement1">
 </head>
 <body>
   <aside class="rail" aria-label="+U menu">
@@ -51,7 +51,7 @@
             <button type="button" data-answer="wander">Just wander</button>
           </div>
         </div>
-        <div class="welcome-result" id="welcome-result" hidden>
+        <div class="welcome-result" id="welcome-result" aria-live="polite" hidden>
           <strong>Your seat is ready.</strong>
           <span>Welcome to +U.</span>
           <button type="button" id="restart-welcome">Ask me again</button>
@@ -65,13 +65,13 @@
         </div>
 
         <div class="course-tabs" role="tablist" aria-label="Menu courses">
-          <button type="button" data-menu="bits" role="tab">BITS</button>
-          <button type="button" data-menu="bites" role="tab">BITES</button>
-          <button type="button" data-menu="biggies" role="tab">BIGGIES</button>
-          <button type="button" data-menu="bombs" role="tab">BOMBS</button>
+          <button type="button" id="course-tab-bits" data-menu="bits" role="tab" aria-controls="course-bits" aria-selected="false">BITS</button>
+          <button type="button" id="course-tab-bites" data-menu="bites" role="tab" aria-controls="course-bites" aria-selected="false">BITES</button>
+          <button type="button" id="course-tab-biggies" data-menu="biggies" role="tab" aria-controls="course-biggies" aria-selected="false">BIGGIES</button>
+          <button type="button" id="course-tab-bombs" data-menu="bombs" role="tab" aria-controls="course-bombs" aria-selected="false">BOMBS</button>
         </div>
 
-        <section class="course" data-course="bits">
+        <section class="course" id="course-bits" data-course="bits" role="tabpanel" aria-labelledby="course-tab-bits">
           <h3>Bits <small>· tapas &amp; small plates</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Say hello</strong><p>Walk in without a name, title, résumé, or explanation.</p></article>
@@ -80,7 +80,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="bites" hidden>
+        <section class="course" id="course-bites" data-course="bites" role="tabpanel" aria-labelledby="course-tab-bites" hidden>
           <h3>Bites <small>· you may need a plate</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Learn together</strong><p>Community-made information, experiments, and practical guidance.</p></article>
@@ -89,7 +89,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="biggies" hidden>
+        <section class="course" id="course-biggies" data-course="biggies" role="tabpanel" aria-labelledby="course-tab-biggies" hidden>
           <h3>Biggies <small>· you may need a bib</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Build an appetite</strong><p>Shape bigger community services without gatekeepers or borrowed prestige.</p></article>
@@ -98,7 +98,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="bombs" hidden>
+        <section class="course" id="course-bombs" data-course="bombs" role="tabpanel" aria-labelledby="course-tab-bombs" hidden>
           <h3>BOMBS <small>· desserts &amp; the register</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Whole Donuts store</strong><p><a href="https://wholedonuts.buzz/">Browse wholedonuts.buzz</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
@@ -109,14 +109,22 @@
           <div class="change-box">
             <p><strong>Your bill:</strong> curiosity, cause, and effect.<br><strong>Your change:</strong> a private +U QR that is yours on this device.</p>
             <button id="make-pass" type="button">Receive your +U change</button>
-            <div class="pass-card" id="pass-card" hidden>
-              <img id="pass-qr" alt="Your private +U QR">
-              <p><strong id="pass-name"></strong>This starts your invisible rewards trail on this device. No name, face, email, or payment information is requested.</p>
+            <div class="pass-card" id="pass-card" aria-live="polite" hidden>
+              <img id="pass-qr" alt="Your private +U QR" hidden>
+              <div class="pass-copy">
+                <p><strong id="pass-name"></strong>This browser can keep your +U pass when you return through your private link. No name, face, or payment information is requested here.</p>
+                <div class="pass-actions">
+                  <a id="open-pass-link" href="#home" target="_blank" rel="noopener">Open my private +U link</a>
+                  <button id="copy-pass-link" type="button">Copy my private +U link</button>
+                </div>
+                <p class="pass-help" id="pass-help">The QR image is requested from a third-party QR service only after you ask for it.</p>
+                <p class="pass-fallback" id="pass-fallback" hidden>QR image unavailable right now. Use your private +U link instead.</p>
+              </div>
             </div>
           </div>
 
           <div class="fine-print">
-            <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Rewards and apps are an early community concept and may change. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page currently stores only the +U pass and last-visit time in this browser; clearing browser storage removes them. Do not submit private, health, financial, or children’s information here.
+            <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page stores only the +U pass and last-visit time in this browser; opening a `?u=` link restores that pass in this browser, and clearing browser storage removes it. If you request a QR image, the encoded link is sent to a third-party QR image service to render it. Do not submit private, health, financial, or children’s information here.
             <details><summary>Community table agreement</summary><p>Participate lawfully and respectfully. Community information is general information, not medical, legal, financial, or professional advice. No harassment, exploitation, impersonation, unsafe activity, or promises of guaranteed results. External links and community contributions remain the responsibility of their providers and authors.</p></details>
           </div>
         </section>
@@ -127,6 +135,53 @@
         <a class="choice tnc" href="#tnc"><strong>The Nurtured Chef</strong><span>Food, care, the foundation, and the Nutur3d Chef store.</span></a>
       </div>
       <p class="promise">No names. No faces. No entrance fee. Only cause and effect—yours or +U. Always treated by TNC.</p>
+
+      <section class="brochure" aria-labelledby="brochure-title">
+        <div class="brochure-head">
+          <p class="eyebrow">MOVEMENT · PRINT + DIGITAL COMPANION</p>
+          <h2 id="brochure-title">Bring the brochure and the site into the same flow.</h2>
+          <p>The Movement trifold works as the printable front door for +U, Whole Donuts, and The Nurtured Chef. Use it to discover, choose a branch, act, and respond.</p>
+        </div>
+        <div class="brochure-grid">
+          <article class="brochure-card">
+            <h3>Outside spread</h3>
+            <p><strong>MovementTrifoldOUTSIDE.png</strong></p>
+            <ul>
+              <li><strong>Back panel:</strong> About Movement, values, and stay connected footer</li>
+              <li><strong>Spine:</strong> vertical Movement wordmark with chef logo and stripe texture</li>
+              <li><strong>Front cover:</strong> chef hero, Movement title, pillars, and URL bar</li>
+            </ul>
+          </article>
+          <article class="brochure-card">
+            <h3>Inside spread</h3>
+            <p><strong>MovementTrifoldINSIDE.png</strong></p>
+            <ul>
+              <li><strong>Get involved:</strong> four programs and free footer</li>
+              <li><strong>Our story:</strong> quote, founding story, and 5K+/365/Free stats bar</li>
+              <li><strong>Scan &amp; respond:</strong> QR to wenevergonnaclose.com, rapid response note, and public contact</li>
+            </ul>
+          </article>
+        </div>
+        <div class="brochure-meta">
+          <article>
+            <h3>Print order</h3>
+            <ol>
+              <li>Print both spreads at 11×8.5 in landscape on duplex stock.</li>
+              <li>Use the outside image for side 1 and the inside image for side 2.</li>
+              <li>Fold the right panel in first, then fold the left panel over it.</li>
+            </ol>
+          </article>
+          <article>
+            <h3>Public sharing</h3>
+            <ul>
+              <li>Post the inside spread on social media so the QR stays scan-ready.</li>
+              <li>Email both spreads as a digital brochure attachment.</li>
+              <li>Use the brochure beside this site as a presentation and response tool.</li>
+            </ul>
+            <p><strong>Public contact:</strong> <a href="mailto:thewholedonuts@gmail.com">thewholedonuts@gmail.com</a></p>
+          </article>
+        </div>
+      </section>
     </section>
 
     <section id="awd" class="panel branch" aria-labelledby="awd-title">
@@ -156,7 +211,8 @@
     </section>
   </main>
 
-  <footer><span>+U · Today’s menu is made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
-  <script src="app.js?v=welcome3"></script>
+  <footer><span>+U Movement · Today’s menu and brochure are made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
+  <noscript><p class="noscript-note">JavaScript is off, so the welcome gate and private +U pass tools are unavailable. You can still use the branch links and brochure guidance on this page.</p></noscript>
+  <script src="app.js?v=movement1"></script>
 </body>
 </html>
