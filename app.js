@@ -87,7 +87,7 @@ const passLink=document.querySelector('#open-pass-link');
 const copyPassLink=document.querySelector('#copy-pass-link');
 const passFallback=document.querySelector('#pass-fallback');
 function validPass(value){
-  return /^[A-Za-z0-9+\-]{3,80}$/.test(value);
+  return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value);
 }
 function passUrl(pass){
   return 'https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
@@ -113,10 +113,11 @@ function getPass(){
   return pass;
 }
 function renderPass(renderQr){
+  if(!passCard||!passImage||!passName||!passButton)return;
   const pass=getPass();
   const url=passUrl(pass);
   passName.textContent=pass;
-  passLink.href=url;
+  if(passLink)passLink.href=url;
   passCard.hidden=false;
   if(renderQr){
     passImage.hidden=false;
@@ -128,14 +129,14 @@ function renderPass(renderQr){
     passImage.alt='Your private +U QR is ready when requested';
   }
   passButton.textContent=renderQr?'Refresh your +U QR':'Show your +U QR';
-  copyPassLink.textContent='Copy my private +U link';
-  passFallback.hidden=true;
+  if(copyPassLink)copyPassLink.textContent='Copy my private +U link';
+  if(passFallback)passFallback.hidden=true;
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
 if(localStorage.getItem('plusu-pass')&&passButton)renderPass(false);
-if(passImage)passImage.addEventListener('error',()=>{passFallback.hidden=false});
-if(passImage)passImage.addEventListener('load',()=>{passFallback.hidden=true});
+if(passImage&&passFallback)passImage.addEventListener('error',()=>{passFallback.hidden=false});
+if(passImage&&passFallback)passImage.addEventListener('load',()=>{passFallback.hidden=true});
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
   const pass=getPass();
   const url=passUrl(pass);
