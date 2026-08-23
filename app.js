@@ -98,6 +98,7 @@ const passLink=document.querySelector('#open-pass-link');
 const copyPassLink=document.querySelector('#copy-pass-link');
 const passHelp=document.querySelector('#pass-help');
 const passFallback=document.querySelector('#pass-fallback');
+let displayedPass=null;
 // +U passes use the generated format +U-<STAMP>-<4 CHAR SUFFIX>.
 function validPass(value){
   return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value);
@@ -112,7 +113,11 @@ function syncPassFromQuery(){
   const pass=incoming.trim();
   if(!validPass(pass))return 'invalid';
   const existing=safeGet('plusu-pass');
-  const current=existing&&validPass(existing)?existing:(existing?(safeRemove('plusu-pass'),null):null);
+  let current=existing;
+  if(current&&!validPass(current)){
+    safeRemove('plusu-pass');
+    current=null;
+  }
   if(current&&current!==pass){
     console.info('Ignoring incoming +U pass because this browser already has a different saved pass.');
     return 'kept-existing';
@@ -140,6 +145,7 @@ function renderPass(renderQr){
   if(!passCard||!passImage||!passName)return;
   const pass=getPass();
   const url=passUrl(pass);
+  displayedPass=pass;
   passName.textContent=pass;
   if(passLink)passLink.href=url;
   passCard.hidden=false;
@@ -174,7 +180,7 @@ if(passImage&&passFallback){
 }
 if(passRestoreState==='restored'&&passCard)passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
-  const pass=getPass();
+  const pass=displayedPass||getPass();
   const url=passUrl(pass);
   try{
     if(navigator.clipboard&&navigator.clipboard.writeText){
