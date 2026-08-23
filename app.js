@@ -99,7 +99,10 @@ function syncPassFromQuery(){
   const pass=incoming.trim();
   if(!validPass(pass))return;
   const existing=localStorage.getItem('plusu-pass');
-  if(existing&&existing!==pass)return;
+  if(existing&&existing!==pass){
+    console.info('Ignoring incoming +U pass because this browser already has a different saved pass.');
+    return;
+  }
   localStorage.setItem('plusu-pass',pass);
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
@@ -136,9 +139,11 @@ function renderPass(renderQr){
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
-if(localStorage.getItem('plusu-pass')&&passButton)renderPass(false);
-if(passImage&&passFallback)passImage.addEventListener('error',()=>{passFallback.hidden=false});
-if(passImage&&passFallback)passImage.addEventListener('load',()=>{passFallback.hidden=true});
+if(localStorage.getItem('plusu-pass'))renderPass(false);
+if(passImage&&passFallback){
+  passImage.addEventListener('error',()=>{passFallback.hidden=false});
+  passImage.addEventListener('load',()=>{passFallback.hidden=true});
+}
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
   const pass=getPass();
   const url=passUrl(pass);
