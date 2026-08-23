@@ -64,6 +64,9 @@ function finishWelcome({scroll=true}={}){
   welcomeResult.querySelector('span').textContent='We opened '+course.toUpperCase()+' first. Change courses anytime.';
   showQuestion(4);
   if(scroll)counter.scrollIntoView({behavior:'smooth',block:'start'});
+  if(passRestoreState==='restored'&&passCard&&!passCard.hidden){
+    passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -178,10 +181,8 @@ if(passImage&&passFallback){
   });
   passImage.addEventListener('load',()=>{passFallback.hidden=true});
 }
-if(passRestoreState==='restored'&&passCard&&counter&&!counter.hidden){
-  passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
+  if(!displayedPass)renderPass(false);
   const pass=displayedPass||getPass();
   const url=passUrl(pass);
   try{
