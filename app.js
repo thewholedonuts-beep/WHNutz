@@ -118,9 +118,9 @@ const copyPassLink=document.querySelector('#copy-pass-link');
 const passHelp=document.querySelector('#pass-help');
 const passFallback=document.querySelector('#pass-fallback');
 let displayedPass=null;
-// +U passes use the generated format +U-<STAMP>-<4 CHAR SUFFIX>.
+// +U passes use the generated format +U-<STAMP>-<4 CHAR SUFFIX>, where STAMP is a timestamp-derived base36 token.
 function validPass(value){
-  return /^\+U-[A-Z0-9]{1,32}-[A-Z0-9]{4}$/.test(value);
+  return typeof value==='string'&&/^\+U-[A-Z0-9]{1,32}-[A-Z0-9]{4}$/.test(value);
 }
 function passUrl(pass){
   return 'https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
