@@ -85,7 +85,9 @@ const passImage=document.querySelector('#pass-qr');
 const passName=document.querySelector('#pass-name');
 const passLink=document.querySelector('#open-pass-link');
 const copyPassLink=document.querySelector('#copy-pass-link');
+const passHelp=document.querySelector('#pass-help');
 const passFallback=document.querySelector('#pass-fallback');
+// +U passes use the generated format +U-<STAMP>-<4 CHAR SUFFIX>.
 function validPass(value){
   return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value);
 }
@@ -95,18 +97,21 @@ function passUrl(pass){
 function syncPassFromQuery(){
   const params=new URLSearchParams(location.search);
   const incoming=params.get('u');
-  if(!incoming)return;
+  if(!incoming)return 'none';
   const pass=incoming.trim();
-  if(!validPass(pass))return;
+  if(!validPass(pass))return 'invalid';
   const existing=localStorage.getItem('plusu-pass');
-  if(existing&&existing!==pass){
+  if(existing&&!validPass(existing))localStorage.removeItem('plusu-pass');
+  const current=localStorage.getItem('plusu-pass');
+  if(current&&current!==pass){
     console.info('Ignoring incoming +U pass because this browser already has a different saved pass.');
-    return;
+    return 'kept-existing';
   }
   localStorage.setItem('plusu-pass',pass);
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
+  return 'restored';
 }
-syncPassFromQuery();
+const passRestoreState=syncPassFromQuery();
 function getPass(){
   let pass=localStorage.getItem('plusu-pass');
   if(!pass){
@@ -135,6 +140,13 @@ function renderPass(renderQr){
   }
   if(passButton)passButton.textContent=renderQr?'Refresh your +U QR':'Show your +U QR';
   if(copyPassLink)copyPassLink.textContent='Copy my private +U link';
+  if(passHelp){
+    passHelp.textContent=passRestoreState==='restored'
+      ?'This browser restored your +U pass from a private link. Request a QR only if you want one on screen.'
+      :passRestoreState==='kept-existing'
+        ?'This browser kept its existing +U pass. Request a QR only if you want one on screen.'
+        :'The QR image is requested from a third-party QR service only after you ask for it.';
+  }
   if(passFallback)passFallback.hidden=true;
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
