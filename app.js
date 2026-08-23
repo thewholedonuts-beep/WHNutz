@@ -112,8 +112,7 @@ function syncPassFromQuery(){
   const pass=incoming.trim();
   if(!validPass(pass))return 'invalid';
   const existing=safeGet('plusu-pass');
-  if(existing&&!validPass(existing))safeRemove('plusu-pass');
-  const current=safeGet('plusu-pass');
+  const current=existing&&validPass(existing)?existing:(existing?(safeRemove('plusu-pass'),null):null);
   if(current&&current!==pass){
     console.info('Ignoring incoming +U pass because this browser already has a different saved pass.');
     return 'kept-existing';
@@ -166,7 +165,7 @@ function renderPass(renderQr){
   safeSet('plusu-last-visit',new Date().toISOString());
 }
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
-if(safeGet('plusu-pass'))renderPass(false);
+if(validPass(safeGet('plusu-pass')))renderPass(false);
 if(passImage&&passFallback){
   passImage.addEventListener('error',()=>{
     if(!passImage.hidden&&passImage.getAttribute('src'))passFallback.hidden=false;
