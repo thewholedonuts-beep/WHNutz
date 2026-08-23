@@ -120,7 +120,7 @@ const passFallback=document.querySelector('#pass-fallback');
 let displayedPass=null;
 // +U passes use the generated format +U-<STAMP>-<4 CHAR SUFFIX>.
 function validPass(value){
-  return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value);
+  return /^\+U-[A-Z0-9]{1,16}-[A-Z0-9]{4}$/.test(value);
 }
 function passUrl(pass){
   return 'https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
