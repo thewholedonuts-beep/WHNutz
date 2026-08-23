@@ -153,9 +153,12 @@ function renderPass(renderQr){
 if(passButton)passButton.addEventListener('click',()=>renderPass(true));
 if(localStorage.getItem('plusu-pass'))renderPass(false);
 if(passImage&&passFallback){
-  passImage.addEventListener('error',()=>{passFallback.hidden=false});
+  passImage.addEventListener('error',()=>{
+    if(!passImage.hidden&&passImage.getAttribute('src'))passFallback.hidden=false;
+  });
   passImage.addEventListener('load',()=>{passFallback.hidden=true});
 }
+if(passRestoreState==='restored'&&passCard)passCard.scrollIntoView({behavior:'smooth',block:'nearest'});
 if(copyPassLink)copyPassLink.addEventListener('click',async()=>{
   const pass=getPass();
   const url=passUrl(pass);
