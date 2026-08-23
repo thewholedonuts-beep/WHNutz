@@ -1,0 +1,13 @@
+{
+  "name": "@thewholedonuts/web-ui",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "private": true,
+  "dependencies": {
+    "@thewholedonuts/emotional-intelligence": "1.0.0",
+    "@thewholedonuts/shared": "1.0.0"
+  },
+  "scripts": {
+    "build": "node -e \"require('./src/index.js')\""
+  }
+}

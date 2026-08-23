@@ -1,39 +1,32 @@
-# +U — unified web entry
+# TheWholedonuts Universe
 
-This repository is the public deployment root for **wenevergonnaclose.com**.
+Unified monorepo for thewholedonuts ecosystem.
 
-## Experience map
+## Workspace layout
 
-- **+U entry:** https://wenevergonnaclose.com/
-- **TNC — The Nurtured Chef**
-  - content/funnel: https://thenutur3dchef.com/
-  - e-store return: https://thenurturedchef.com/
-- **AWD — Whole Donuts**
-  - content and e-store return: https://wholedonuts.org/
+- `shared/` common components, hooks, models, constants, and utilities
+- `packages/emotional-intelligence` Do-Nutz emotional engine
+- `packages/web-ui` reusable UI layer
+- `packages/api` service/API layer
+- `packages/cli` command line tools
+- `apps/web` main web app
+- `apps/dashboard` admin dashboard
 
-The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link.
+## How it connects
 
-## Repository responsibilities
+- Web UI uses `@thewholedonuts/shared` + `@thewholedonuts/emotional-intelligence`
+- API services use `@thewholedonuts/emotional-intelligence`
+- CLI and apps compose package APIs
+- Root tests validate integration points across packages
 
-- `WHNutz` (this public repository): root static site and GitHub Pages deployment.
-- `wholedonuts-universe` (private): preserved Porkbun integration, funnel definitions, orchestration code, and operational documentation. It is not a public web server.
+## Quick start
 
-## GitHub Pages
+```bash
+npm install
+npm run build
+npm test
+```
 
-Publish from the `main` branch repository root after merging this change. The `CNAME` file binds the site to `wenevergonnaclose.com`.
+## Legacy static site
 
-## Porkbun DNS
-
-Use these records for the root deployment:
-
-| Type | Host | Answer | TTL |
-|---|---|---|---|
-| A | @ | 185.199.108.153 | 600 |
-| A | @ | 185.199.109.153 | 600 |
-| A | @ | 185.199.110.153 | 600 |
-| A | @ | 185.199.111.153 | 600 |
-| CNAME | www | thewholedonuts-beep.github.io | 600 |
-
-No `tnc` or `awd` DNS records are required: the branches use `#tnc` and `#awd` routes on the primary domain, which avoids extra certificates and fragmented deployments.
-
-Do not deploy the `192.168.1.x` addresses in the private funnel configuration to public DNS; those are private placeholder addresses.
+The original static site files (`index.html`, `styles.css`, `app.js`, `CNAME`) are preserved at repository root for current GitHub Pages compatibility.

@@ -1,0 +1,12 @@
+{
+  "name": "@thewholedonuts/app-dashboard",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "private": true,
+  "dependencies": {
+    "@thewholedonuts/api": "1.0.0"
+  },
+  "scripts": {
+    "build": "node -e \"require('./src/index.js')\""
+  }
+}
