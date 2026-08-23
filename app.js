@@ -47,7 +47,6 @@ menuButtons.forEach((button,index)=>button.addEventListener('keydown',event=>{
   else nextIndex=(index+1)%menuButtons.length;
   openCourse(menuButtons[nextIndex].dataset.menu,{focus:true});
 }));
-if(menuButtons.length)openCourse('bits');
 
 const dateLabel=document.querySelector('#daily-date');
 if(dateLabel)dateLabel.textContent=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'}).format(new Date());
@@ -89,8 +88,15 @@ document.querySelectorAll('[data-answer]').forEach(button=>{
 
 const savedWelcome=safeGet('plusu-welcome');
 if(savedWelcome){
-  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}catch(e){showQuestion(1)}
-}else if(gate){showQuestion(1)}
+  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}
+  catch(e){
+    if(menuButtons.length)openCourse('bits');
+    showQuestion(1);
+  }
+}else{
+  if(menuButtons.length)openCourse('bits');
+  if(gate)showQuestion(1);
+}
 
 const restart=document.querySelector('#restart-welcome');
 if(restart)restart.addEventListener('click',()=>{
