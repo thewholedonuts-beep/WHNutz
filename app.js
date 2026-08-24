@@ -100,6 +100,8 @@ const passCard=document.querySelector('#pass-card');
 const passImage=document.querySelector('#pass-qr');
 const passName=document.querySelector('#pass-name');
 const passStatus=document.querySelector('#pass-status');
+const qrUnavailableMessage='QR image temporarily unavailable. Your +U pass code is still valid below.';
+const qrOnDemandMessage='Pass restored on this device. Tap "Receive your +U change" to load your QR.';
 function getPass(){
   let pass=localStorage.getItem('plusu-pass');
   if(!pass){
@@ -114,10 +116,16 @@ function showPass(){
   const pass=getPass();
   const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
-  if(passStatus)passStatus.hidden=true;
+  if(passStatus){
+    passStatus.hidden=true;
+    passStatus.textContent=qrUnavailableMessage;
+  }
   if(passImage){
     passImage.onerror=()=>{
-      if(passStatus)passStatus.hidden=false;
+      if(passStatus){
+        passStatus.textContent=qrUnavailableMessage;
+        passStatus.hidden=false;
+      }
     };
     passImage.src='https://api.qrserver.com/v1/create-qr-code/?size=720x720&data='+encodeURIComponent(url);
   }
@@ -125,8 +133,20 @@ function showPass(){
   passButton.textContent='Your +U change is ready';
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
 }
+function showSavedPass(){
+  const pass=localStorage.getItem('plusu-pass');
+  if(!pass||!passCard||!passName)return;
+  passName.textContent=pass;
+  passCard.hidden=false;
+  if(passImage)passImage.removeAttribute('src');
+  if(passStatus){
+    passStatus.textContent=qrOnDemandMessage;
+    passStatus.hidden=false;
+  }
+  if(passButton)passButton.textContent='Load your +U QR';
+}
 if(passButton)passButton.addEventListener('click',showPass);
-if(localStorage.getItem('plusu-pass')&&passButton)showPass();
+showSavedPass();
 
 addEventListener('hashchange',syncBranch);
 syncBranch();
