@@ -127,21 +127,13 @@ function getPass(){
 function currentPass(){
   const storedPass=safeGet('plusu-pass');
   if(validPass(storedPass))return storedPass;
-  const visiblePass=(passName&&passName.textContent||'').trim();
-  if(validPass(visiblePass)){
-    safeSet('plusu-pass',visiblePass);
-    return visiblePass;
-  }
   return getPass();
 }
 function showPass(){
   const pass=currentPass();
   const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
-  if(passStatus){
-    passStatus.hidden=true;
-    passStatus.textContent=qrUnavailableMessage;
-  }
+  if(passStatus)passStatus.hidden=true;
   if(passImage){
     passImage.hidden=true;
     passImage.onload=()=>{
