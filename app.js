@@ -55,7 +55,7 @@ function showQuestion(number){
   const progress=document.querySelector('#welcome-progress');
   if(progress)progress.textContent=number<=3?'Question '+number+' of 3':'Welcome to your table';
 }
-function finishWelcome(){
+function finishWelcome({scroll=true}={}){
   const branch=welcomeAnswers.branch;
   const course=welcomeAnswers.course||'bits';
   openCourse(course);
@@ -68,7 +68,7 @@ function finishWelcome(){
   welcomeResult.querySelector('strong').textContent='Your seat is ready at '+branchWords+'.';
   welcomeResult.querySelector('span').textContent='We opened '+course.toUpperCase()+' first. Change courses anytime.';
   showQuestion(4);
-  counter.scrollIntoView({behavior:'smooth',block:'start'});
+  if(scroll)counter.scrollIntoView({behavior:'smooth',block:'start'});
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -81,7 +81,7 @@ document.querySelectorAll('[data-answer]').forEach(button=>{
 
 const savedWelcome=localStorage.getItem('plusu-welcome');
 if(savedWelcome){
-  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome()}catch(e){showQuestion(1)}
+  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}catch(e){showQuestion(1)}
 }else if(gate){showQuestion(1)}
 
 const restart=document.querySelector('#restart-welcome');
@@ -102,9 +102,12 @@ const passName=document.querySelector('#pass-name');
 const passStatus=document.querySelector('#pass-status');
 const qrUnavailableMessage='QR image temporarily unavailable. Your +U pass code is still valid below.';
 const qrOnDemandMessage='Pass restored on this device. Tap "Receive your +U change" to load your QR.';
+function validPass(value){
+  return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value||'');
+}
 function getPass(){
   let pass=localStorage.getItem('plusu-pass');
-  if(!pass){
+  if(!validPass(pass)){
     const stamp=Date.now().toString(36).toUpperCase();
     const spice=Math.random().toString(36).slice(2,6).toUpperCase();
     pass='+U-'+stamp+'-'+spice;
@@ -121,7 +124,12 @@ function showPass(){
     passStatus.textContent=qrUnavailableMessage;
   }
   if(passImage){
+    passImage.hidden=true;
+    passImage.onload=()=>{
+      passImage.hidden=false;
+    };
     passImage.onerror=()=>{
+      passImage.hidden=true;
       if(passStatus){
         passStatus.textContent=qrUnavailableMessage;
         passStatus.hidden=false;
@@ -135,10 +143,13 @@ function showPass(){
 }
 function showSavedPass(){
   const pass=localStorage.getItem('plusu-pass');
-  if(!pass||!passCard||!passName)return;
+  if(!validPass(pass)||!passCard||!passName)return;
   passName.textContent=pass;
   passCard.hidden=false;
-  if(passImage)passImage.removeAttribute('src');
+  if(passImage){
+    passImage.hidden=true;
+    passImage.removeAttribute('src');
+  }
   if(passStatus){
     passStatus.textContent=qrOnDemandMessage;
     passStatus.hidden=false;
