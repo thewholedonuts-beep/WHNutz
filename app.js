@@ -110,7 +110,7 @@ const passImage=document.querySelector('#pass-qr');
 const passName=document.querySelector('#pass-name');
 const passStatus=document.querySelector('#pass-status');
 const qrUnavailableMessage='QR image temporarily unavailable. Your +U pass code is still valid below.';
-const qrOnDemandMessage='Pass restored on this device. Tap "Load your +U QR" to load your QR.';
+const qrOnDemandMessage='Pass ready on this device. Tap "Load your +U QR" to load your QR.';
 function validPass(value){
   return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value||'');
 }
@@ -124,8 +124,13 @@ function getPass(){
   }
   return pass;
 }
+function currentPass(){
+  const visiblePass=(passName&&passName.textContent||'').trim();
+  if(validPass(visiblePass))return visiblePass;
+  return getPass();
+}
 function showPass(){
-  const pass=getPass();
+  const pass=currentPass();
   const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
   if(passStatus){
