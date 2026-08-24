@@ -19,10 +19,26 @@ function openCourse(id){
     const active=button.dataset.menu===id;
     button.classList.toggle('active',active);
     button.setAttribute('aria-selected',String(active));
+    button.tabIndex=active?0:-1;
   });
   menuPanels.forEach(panel=>panel.hidden=panel.dataset.course!==id);
 }
 menuButtons.forEach(button=>button.addEventListener('click',()=>openCourse(button.dataset.menu)));
+menuButtons.forEach((button,index)=>{
+  button.addEventListener('keydown',event=>{
+    if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+    event.preventDefault();
+    const last=menuButtons.length-1;
+    let next=index;
+    if(event.key==='ArrowRight')next=index===last?0:index+1;
+    if(event.key==='ArrowLeft')next=index===0?last:index-1;
+    if(event.key==='Home')next=0;
+    if(event.key==='End')next=last;
+    const target=menuButtons[next];
+    openCourse(target.dataset.menu);
+    target.focus();
+  });
+});
 if(menuButtons.length)openCourse('bits');
 
 const dateLabel=document.querySelector('#daily-date');

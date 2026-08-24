@@ -65,13 +65,13 @@
         </div>
 
         <div class="course-tabs" role="tablist" aria-label="Menu courses">
-          <button type="button" data-menu="bits" role="tab">BITS</button>
-          <button type="button" data-menu="bites" role="tab">BITES</button>
-          <button type="button" data-menu="biggies" role="tab">BIGGIES</button>
-          <button type="button" data-menu="bombs" role="tab">BOMBS</button>
+          <button type="button" id="tab-bits" data-menu="bits" role="tab" aria-controls="panel-bits" aria-selected="true">BITS</button>
+          <button type="button" id="tab-bites" data-menu="bites" role="tab" aria-controls="panel-bites" aria-selected="false">BITES</button>
+          <button type="button" id="tab-biggies" data-menu="biggies" role="tab" aria-controls="panel-biggies" aria-selected="false">BIGGIES</button>
+          <button type="button" id="tab-bombs" data-menu="bombs" role="tab" aria-controls="panel-bombs" aria-selected="false">BOMBS</button>
         </div>
 
-        <section class="course" data-course="bits">
+        <section class="course" id="panel-bits" data-course="bits" role="tabpanel" aria-labelledby="tab-bits">
           <h3>Bits <small>· tapas &amp; small plates</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Say hello</strong><p>Walk in without a name, title, résumé, or explanation.</p></article>
@@ -80,7 +80,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="bites" hidden>
+        <section class="course" id="panel-bites" data-course="bites" role="tabpanel" aria-labelledby="tab-bites" hidden>
           <h3>Bites <small>· you may need a plate</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Learn together</strong><p>Community-made information, experiments, and practical guidance.</p></article>
@@ -89,7 +89,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="biggies" hidden>
+        <section class="course" id="panel-biggies" data-course="biggies" role="tabpanel" aria-labelledby="tab-biggies" hidden>
           <h3>Biggies <small>· you may need a bib</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Build an appetite</strong><p>Shape bigger community services without gatekeepers or borrowed prestige.</p></article>
@@ -98,7 +98,7 @@
           </div>
         </section>
 
-        <section class="course" data-course="bombs" hidden>
+        <section class="course" id="panel-bombs" data-course="bombs" role="tabpanel" aria-labelledby="tab-bombs" hidden>
           <h3>BOMBS <small>· desserts &amp; the register</small></h3>
           <div class="course-grid">
             <article class="dish"><strong>Whole Donuts store</strong><p><a href="https://wholedonuts.buzz/">Browse wholedonuts.buzz</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
