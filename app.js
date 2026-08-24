@@ -125,8 +125,13 @@ function getPass(){
   return pass;
 }
 function currentPass(){
+  const storedPass=safeGet('plusu-pass');
+  if(validPass(storedPass))return storedPass;
   const visiblePass=(passName&&passName.textContent||'').trim();
-  if(validPass(visiblePass))return visiblePass;
+  if(validPass(visiblePass)){
+    safeSet('plusu-pass',visiblePass);
+    return visiblePass;
+  }
   return getPass();
 }
 function showPass(){
