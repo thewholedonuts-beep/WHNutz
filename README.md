@@ -6,10 +6,13 @@ This repository is the public deployment root for **wenevergonnaclose.com**.
 
 - **+U entry:** https://wenevergonnaclose.com/
 - **TNC — The Nurtured Chef**
-  - content/funnel: https://thenutur3dchef.com/
-  - e-store return: https://thenurturedchef.com/
+  - main site: https://thenurturedchef.com/
+  - foundation: https://thenurturedchef.foundation/
+  - chef store: https://thenutur3dchef.com/
 - **AWD — Whole Donuts**
-  - content and e-store return: https://wholedonuts.org/
+  - app entry: https://wholedonuts.app/
+  - community/cause: https://wholedonuts.org/
+  - store: https://wholedonuts.buzz/
 
 The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link.
 

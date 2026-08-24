@@ -1,12 +1,14 @@
 const links=[...document.querySelectorAll('[data-branch]')];
 const store=document.querySelector('#branch-store');
-const payment=['Pay $wholedonuts','https://cash.app/$wholedonuts'];
-const stores={tnc:payment,awd:payment};
+const stores={
+  awd:['Browse the .buzz store ↗','https://wholedonuts.buzz/'],
+  tnc:['Browse the chef store ↗','https://thenutur3dchef.com/']
+};
 
 function syncBranch(){
   const id=location.hash.slice(1);
   links.forEach(a=>a.classList.toggle('active',a.dataset.branch===id));
-  if(stores[id]){store.textContent=stores[id][0]+' ↗';store.href=stores[id][1]}
+  if(stores[id]){store.textContent=stores[id][0];store.href=stores[id][1]}
   else{store.textContent='Open the menu';store.href='#home'}
 }
 
