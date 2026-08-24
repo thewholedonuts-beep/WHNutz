@@ -51,7 +51,7 @@
             <button type="button" data-answer="wander">Just wander</button>
           </div>
         </div>
-        <div class="welcome-result" id="welcome-result" hidden>
+        <div class="welcome-result" id="welcome-result" aria-live="polite" hidden>
           <strong>Your seat is ready.</strong>
           <span>Welcome to +U.</span>
           <button type="button" id="restart-welcome">Ask me again</button>
@@ -109,8 +109,9 @@
           <div class="change-box">
             <p><strong>Your bill:</strong> curiosity, cause, and effect.<br><strong>Your change:</strong> a private +U QR that is yours on this device.</p>
             <button id="make-pass" type="button">Receive your +U change</button>
-            <div class="pass-card" id="pass-card" hidden>
+            <div class="pass-card" id="pass-card" aria-live="polite" aria-atomic="true" hidden>
               <img id="pass-qr" alt="Your private +U QR">
+              <p id="pass-status" hidden>QR image temporarily unavailable. Your +U pass code is still valid below.</p>
               <p><strong id="pass-name"></strong>This starts your invisible rewards trail on this device. No name, face, email, or payment information is requested.</p>
             </div>
           </div>

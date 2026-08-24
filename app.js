@@ -99,6 +99,7 @@ const passButton=document.querySelector('#make-pass');
 const passCard=document.querySelector('#pass-card');
 const passImage=document.querySelector('#pass-qr');
 const passName=document.querySelector('#pass-name');
+const passStatus=document.querySelector('#pass-status');
 function getPass(){
   let pass=localStorage.getItem('plusu-pass');
   if(!pass){
@@ -113,7 +114,13 @@ function showPass(){
   const pass=getPass();
   const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
-  passImage.src='https://api.qrserver.com/v1/create-qr-code/?size=720x720&data='+encodeURIComponent(url);
+  if(passStatus)passStatus.hidden=true;
+  if(passImage){
+    passImage.onerror=()=>{
+      if(passStatus)passStatus.hidden=false;
+    };
+    passImage.src='https://api.qrserver.com/v1/create-qr-code/?size=720x720&data='+encodeURIComponent(url);
+  }
   passCard.hidden=false;
   passButton.textContent='Your +U change is ready';
   localStorage.setItem('plusu-last-visit',new Date().toISOString());
