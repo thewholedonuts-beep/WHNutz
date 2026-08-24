@@ -1,5 +1,14 @@
 const links=[...document.querySelectorAll('[data-branch]')];
 const store=document.querySelector('#branch-store');
+function safeGet(key){
+  try{return localStorage.getItem(key)}catch(e){return null}
+}
+function safeSet(key,value){
+  try{localStorage.setItem(key,value)}catch(e){}
+}
+function safeRemove(key){
+  try{localStorage.removeItem(key)}catch(e){}
+}
 const stores={
   awd:['Browse the .buzz store ↗','https://wholedonuts.buzz/'],
   tnc:['Browse the chef store ↗','https://thenutur3dchef.com/']
@@ -59,7 +68,7 @@ function finishWelcome({scroll=true}={}){
   const branch=welcomeAnswers.branch;
   const course=welcomeAnswers.course||'bits';
   openCourse(course);
-  localStorage.setItem('plusu-welcome',JSON.stringify(welcomeAnswers));
+  safeSet('plusu-welcome',JSON.stringify(welcomeAnswers));
   gate.classList.add('complete');
   steps.forEach(step=>step.hidden=true);
   welcomeResult.hidden=false;
@@ -79,14 +88,14 @@ document.querySelectorAll('[data-answer]').forEach(button=>{
   });
 });
 
-const savedWelcome=localStorage.getItem('plusu-welcome');
+const savedWelcome=safeGet('plusu-welcome');
 if(savedWelcome){
-  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}catch(e){showQuestion(1)}
+  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome({scroll:false})}catch(e){safeRemove('plusu-welcome');showQuestion(1)}
 }else if(gate){showQuestion(1)}
 
 const restart=document.querySelector('#restart-welcome');
 if(restart)restart.addEventListener('click',()=>{
-  localStorage.removeItem('plusu-welcome');
+  safeRemove('plusu-welcome');
   Object.keys(welcomeAnswers).forEach(key=>delete welcomeAnswers[key]);
   welcomeResult.hidden=true;
   counter.hidden=true;
@@ -101,17 +110,17 @@ const passImage=document.querySelector('#pass-qr');
 const passName=document.querySelector('#pass-name');
 const passStatus=document.querySelector('#pass-status');
 const qrUnavailableMessage='QR image temporarily unavailable. Your +U pass code is still valid below.';
-const qrOnDemandMessage='Pass restored on this device. Tap "Receive your +U change" to load your QR.';
+const qrOnDemandMessage='Pass restored on this device. Tap "Load your +U QR" to load your QR.';
 function validPass(value){
   return /^\+U-[A-Z0-9]+-[A-Z0-9]{4}$/.test(value||'');
 }
 function getPass(){
-  let pass=localStorage.getItem('plusu-pass');
+  let pass=safeGet('plusu-pass');
   if(!validPass(pass)){
     const stamp=Date.now().toString(36).toUpperCase();
     const spice=Math.random().toString(36).slice(2,6).toUpperCase();
     pass='+U-'+stamp+'-'+spice;
-    localStorage.setItem('plusu-pass',pass);
+    safeSet('plusu-pass',pass);
   }
   return pass;
 }
@@ -139,10 +148,10 @@ function showPass(){
   }
   passCard.hidden=false;
   passButton.textContent='Your +U change is ready';
-  localStorage.setItem('plusu-last-visit',new Date().toISOString());
+  safeSet('plusu-last-visit',new Date().toISOString());
 }
 function showSavedPass(){
-  const pass=localStorage.getItem('plusu-pass');
+  const pass=safeGet('plusu-pass');
   if(!validPass(pass)||!passCard||!passName)return;
   passName.textContent=pass;
   passCard.hidden=false;
