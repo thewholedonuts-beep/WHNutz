@@ -1,13 +1,14 @@
 const links=[...document.querySelectorAll('[data-branch]')];
 const store=document.querySelector('#branch-store');
+const memoryStore=new Map();
 function safeGet(key){
-  try{return localStorage.getItem(key)}catch(e){return null}
+  try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
 }
 function safeSet(key,value){
-  try{localStorage.setItem(key,value)}catch(e){}
+  try{localStorage.setItem(key,value)}catch(e){memoryStore.set(key,String(value))}
 }
 function safeRemove(key){
-  try{localStorage.removeItem(key)}catch(e){}
+  try{localStorage.removeItem(key)}catch(e){memoryStore.delete(key)}
 }
 const stores={
   awd:['Browse the .buzz store ↗','https://wholedonuts.buzz/'],
