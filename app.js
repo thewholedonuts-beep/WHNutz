@@ -117,6 +117,7 @@ function validPass(value){
 function getPass(){
   let pass=safeGet('plusu-pass');
   if(!validPass(pass)){
+    if(pass)safeRemove('plusu-pass');
     const stamp=Date.now().toString(36).toUpperCase();
     const spice=Math.random().toString(36).slice(2,6).toUpperCase();
     pass='+U-'+stamp+'-'+spice;
@@ -130,6 +131,7 @@ function currentPass(){
   return getPass();
 }
 function showPass(){
+  if(!passCard||!passName||!passButton)return;
   const pass=currentPass();
   const url='https://justplususa.org/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
