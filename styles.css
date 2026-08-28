@@ -63,6 +63,74 @@ main{margin-left:var(--rail)}
   margin:.3rem 0 1.5rem
 }
 .lede{font-size:clamp(1.1rem,2vw,1.5rem);max-width:46rem}
+.welcome-scene{
+  margin:2rem 0;
+  padding:1.4rem;
+  max-width:70rem;
+  border:2px solid var(--ink);
+  border-radius:1.25rem;
+  background:#fff;
+  box-shadow:8px 8px 0 var(--gold)
+}
+.stick-group{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap}
+.stick{
+  width:4.2rem;
+  height:7.2rem;
+  position:relative
+}
+.stick .head{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:1.6rem;
+  height:1.6rem;
+  border:3px solid var(--ink);
+  border-radius:50%;
+  transform:translateX(-50%)
+}
+.stick .body{
+  position:absolute;
+  top:1.6rem;
+  left:50%;
+  width:0;
+  height:2.6rem;
+  border-left:3px solid var(--ink);
+  transform:translateX(-50%)
+}
+.stick .arm,
+.stick .leg{
+  position:absolute;
+  width:1.5rem;
+  border-top:3px solid var(--ink);
+  transform-origin:left center
+}
+.stick .arm.left{top:2.6rem;left:2rem;transform:rotate(155deg)}
+.stick .arm.right{top:2.6rem;left:2rem;transform:rotate(25deg)}
+.stick .leg.left{top:5rem;left:2rem;transform:rotate(130deg)}
+.stick .leg.right{top:5rem;left:2rem;transform:rotate(50deg)}
+.stick.happy .head::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:.2rem;
+  width:.65rem;
+  border-top:2px solid var(--ink);
+  border-radius:50%;
+  transform:translateX(-50%)
+}
+.stick.wave .arm.right{transform:rotate(-35deg)}
+.welcome-note{
+  margin:1rem auto 0;
+  text-align:center;
+  font:700 clamp(1.4rem,3vw,2.2rem)/1.2 Georgia,serif
+}
+.welcome-actions{
+  margin-top:1rem;
+  display:flex;
+  gap:.8rem;
+  flex-wrap:wrap;
+  justify-content:center
+}
 .counter{
   margin:2rem 0;
   padding:1.2rem;
@@ -203,46 +271,6 @@ footer{
   font-size:.8rem
 }
 footer a{color:var(--ink);font-weight:900}
-.welcome-gate{
-  margin:2rem 0;
-  padding:clamp(1.2rem,4vw,2.4rem);
-  max-width:70rem;
-  border-radius:1.4rem;
-  background:var(--ink);
-  color:#fff;
-  box-shadow:8px 8px 0 var(--gold)
-}
-.welcome-gate h2{
-  font:700 clamp(2rem,5vw,4rem)/1 Georgia,serif;
-  max-width:14ch;
-  margin:.3rem 0 1.5rem
-}
-.welcome-step>p{font-size:1.35rem;font-weight:800}
-.answer-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:.7rem
-}
-.answer-grid button,
-.welcome-result button{
-  border:2px solid var(--gold);
-  border-radius:1rem;
-  background:#fff;
-  color:var(--ink);
-  padding:1rem;
-  font-weight:900;
-  cursor:pointer;
-  min-height:4rem
-}
-.answer-grid button:hover,
-.answer-grid button:focus{background:var(--gold);transform:translateY(-2px)}
-.welcome-result{display:grid;gap:.5rem}
-.welcome-result strong{
-  font:700 clamp(1.6rem,4vw,3rem)/1 Georgia,serif;
-  color:var(--gold)
-}
-.welcome-result button{width:max-content;min-height:auto;margin-top:.8rem}
-.welcome-gate.complete{background:var(--green)}
 .brochure{
   margin-top:2rem;
   padding:1.5rem;
@@ -297,5 +325,6 @@ footer a{color:var(--ink);font-weight:900}
   .pass-actions button{width:100%}
   .choice{min-height:9rem}
   footer{left:var(--rail)}
-  .answer-grid{grid-template-columns:1fr 1fr}
+  .welcome-actions{flex-direction:column}
+  .welcome-actions .button{width:100%;text-align:center}
 }
