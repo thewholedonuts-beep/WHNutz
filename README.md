@@ -12,18 +12,22 @@ Unified monorepo for thewholedonuts ecosystem.
 - `apps/web` main web app
 - `apps/dashboard` admin dashboard
 
+## Public deployment root
+
+This repository also serves as the public deployment root for **justplususa.org**.
+
 ## Experience map
 
-- **+U entry:** https://wenevergonnaclose.com/
-- **+U Movement brochure companion:** public-facing brochure guidance now lives on the landing page so the print flow and site flow stay aligned
+- **+U entry:** https://justplususa.org/
+- **+U Movement brochure companion:** public-facing brochure guidance lives on the landing page so print and site flows stay aligned
 - **TNC — The Nurtured Chef**
   - main site: https://thenurturedchef.com/
   - foundation: https://thenurturedchef.foundation/
   - chef store: https://thenutur3dchef.com/
 - **AWD — Whole Donuts**
-  - main site: https://wholedonuts.app/
-  - community & cause: https://wholedonuts.org/
-  - .buzz store: https://wholedonuts.buzz/
+  - app entry: https://wholedonuts.app/
+  - community/cause: https://wholedonuts.org/
+  - store: https://wholedonuts.buzz/
 
 The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link in the footer when its section is active.
 
