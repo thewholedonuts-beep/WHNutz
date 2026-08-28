@@ -131,7 +131,7 @@ function currentPass(){
 }
 function showPass(){
   const pass=currentPass();
-  const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
+  const url='https://justplususa.org/?u='+encodeURIComponent(pass);
   passName.textContent=pass;
   if(passStatus)passStatus.hidden=true;
   if(passImage){

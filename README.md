@@ -1,10 +1,10 @@
 # +U — unified web entry
 
-This repository is the public deployment root for **wenevergonnaclose.com**.
+This repository is the public deployment root for **justplususa.org**.
 
 ## Experience map
 
-- **+U entry:** https://wenevergonnaclose.com/
+- **+U entry:** https://justplususa.org/
 - **TNC — The Nurtured Chef**
   - main site: https://thenurturedchef.com/
   - foundation: https://thenurturedchef.foundation/
@@ -23,7 +23,7 @@ The persistent side rail keeps TNC and AWD available throughout the entry experi
 
 ## GitHub Pages
 
-Publish from the `main` branch repository root after merging this change. The `CNAME` file binds the site to `wenevergonnaclose.com`.
+Publish from the `main` branch repository root after merging this change. The `CNAME` file binds the site to `justplususa.org`.
 
 ## Porkbun DNS
 
