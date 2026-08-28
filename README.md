@@ -1,2 +1,16 @@
 # Whole-Donuts
+
 WENEVERGONNACLOSE.COM
+
+This repository now ships a static landing page for the Whole DoNuts / +U
+experience.
+
+## Local preview
+
+From `/home/runner/work/Whole-Donuts/Whole-Donuts`, run:
+
+```bash
+python3 -m http.server 4173
+```
+
+Then open `http://127.0.0.1:4173`.
