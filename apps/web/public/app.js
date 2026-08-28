@@ -1,0 +1,107 @@
+const links=[...document.querySelectorAll('[data-branch]')];
+const store=document.querySelector('#branch-store');
+const payment=['Pay $wholedonuts','https://cash.app/$wholedonuts'];
+const stores={tnc:payment,awd:payment};
+
+function syncBranch(){
+  const id=location.hash.slice(1);
+  links.forEach(a=>a.classList.toggle('active',a.dataset.branch===id));
+  if(stores[id]){store.textContent=stores[id][0]+' ↗';store.href=stores[id][1]}
+  else{store.textContent='Open the menu';store.href='#home'}
+}
+
+const menuButtons=[...document.querySelectorAll('[data-menu]')];
+const menuPanels=[...document.querySelectorAll('[data-course]')];
+function openCourse(id){
+  menuButtons.forEach(button=>{
+    const active=button.dataset.menu===id;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-selected',String(active));
+  });
+  menuPanels.forEach(panel=>panel.hidden=panel.dataset.course!==id);
+}
+menuButtons.forEach(button=>button.addEventListener('click',()=>openCourse(button.dataset.menu)));
+if(menuButtons.length)openCourse('bits');
+
+const dateLabel=document.querySelector('#daily-date');
+if(dateLabel)dateLabel.textContent=new Intl.DateTimeFormat(undefined,{weekday:'long',month:'long',day:'numeric'}).format(new Date());
+
+const gate=document.querySelector('#welcome-gate');
+const counter=document.querySelector('#community-counter');
+const steps=[...document.querySelectorAll('[data-question]')];
+const welcomeResult=document.querySelector('#welcome-result');
+const welcomeAnswers={};
+
+function showQuestion(number){
+  steps.forEach(step=>step.hidden=Number(step.dataset.question)!==number);
+  const progress=document.querySelector('#welcome-progress');
+  if(progress)progress.textContent=number<=3?'Question '+number+' of 3':'Welcome to your table';
+}
+function finishWelcome(){
+  const branch=welcomeAnswers.branch;
+  const course=welcomeAnswers.course||'bits';
+  openCourse(course);
+  localStorage.setItem('plusu-welcome',JSON.stringify(welcomeAnswers));
+  gate.classList.add('complete');
+  steps.forEach(step=>step.hidden=true);
+  welcomeResult.hidden=false;
+  counter.hidden=false;
+  const branchWords=branch==='awd'?'Whole Donuts':branch==='tnc'?'The Nurtured Chef':'the whole +U table';
+  welcomeResult.querySelector('strong').textContent='Your seat is ready at '+branchWords+'.';
+  welcomeResult.querySelector('span').textContent='We opened '+course.toUpperCase()+' first. Change courses anytime.';
+  showQuestion(4);
+  counter.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('[data-answer]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const step=button.closest('[data-question]');
+    welcomeAnswers[step.dataset.key]=button.dataset.answer;
+    const next=Number(step.dataset.question)+1;
+    if(next>3)finishWelcome();else showQuestion(next);
+  });
+});
+
+const savedWelcome=localStorage.getItem('plusu-welcome');
+if(savedWelcome){
+  try{Object.assign(welcomeAnswers,JSON.parse(savedWelcome));finishWelcome()}catch(e){showQuestion(1)}
+}else if(gate){showQuestion(1)}
+
+const restart=document.querySelector('#restart-welcome');
+if(restart)restart.addEventListener('click',()=>{
+  localStorage.removeItem('plusu-welcome');
+  Object.keys(welcomeAnswers).forEach(key=>delete welcomeAnswers[key]);
+  welcomeResult.hidden=true;
+  counter.hidden=true;
+  gate.classList.remove('complete');
+  showQuestion(1);
+  gate.scrollIntoView({behavior:'smooth'});
+});
+
+const passButton=document.querySelector('#make-pass');
+const passCard=document.querySelector('#pass-card');
+const passImage=document.querySelector('#pass-qr');
+const passName=document.querySelector('#pass-name');
+function getPass(){
+  let pass=localStorage.getItem('plusu-pass');
+  if(!pass){
+    const stamp=Date.now().toString(36).toUpperCase();
+    const spice=Math.random().toString(36).slice(2,6).toUpperCase();
+    pass='+U-'+stamp+'-'+spice;
+    localStorage.setItem('plusu-pass',pass);
+  }
+  return pass;
+}
+function showPass(){
+  const pass=getPass();
+  const url='https://wenevergonnaclose.com/?u='+encodeURIComponent(pass);
+  passName.textContent=pass;
+  passImage.src='https://api.qrserver.com/v1/create-qr-code/?size=720x720&data='+encodeURIComponent(url);
+  passCard.hidden=false;
+  passButton.textContent='Your +U change is ready';
+  localStorage.setItem('plusu-last-visit',new Date().toISOString());
+}
+if(passButton)passButton.addEventListener('click',showPass);
+if(localStorage.getItem('plusu-pass')&&passButton)showPass();
+
+addEventListener('hashchange',syncBranch);
+syncBranch();

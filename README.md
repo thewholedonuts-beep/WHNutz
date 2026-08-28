@@ -1,10 +1,25 @@
-# +U — unified web entry
+# TheWholedonuts Universe
 
-This repository is the public deployment root for **justplususa.org**.
+Unified monorepo for thewholedonuts ecosystem.
+
+## Workspace layout
+
+- `shared/` common components, hooks, models, constants, and utilities
+- `packages/emotional-intelligence` Do-Nutz emotional engine
+- `packages/web-ui` reusable UI layer
+- `packages/api` service/API layer
+- `packages/cli` command line tools
+- `apps/web` main web app
+- `apps/dashboard` admin dashboard
+
+## Public deployment root
+
+This repository also serves as the public deployment root for **justplususa.org**.
 
 ## Experience map
 
 - **+U entry:** https://justplususa.org/
+- **+U Movement brochure companion:** public-facing brochure guidance lives on the landing page so print and site flows stay aligned
 - **TNC — The Nurtured Chef**
   - main site: https://thenurturedchef.com/
   - foundation: https://thenurturedchef.foundation/
@@ -14,29 +29,29 @@ This repository is the public deployment root for **justplususa.org**.
   - community/cause: https://wholedonuts.org/
   - store: https://wholedonuts.buzz/
 
-The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link.
+The persistent side rail keeps TNC and AWD available throughout the entry experience. Each branch also exposes a fixed branch-specific e-store link in the footer when its section is active.
 
-## Repository responsibilities
+## Public behavior
 
-- `WHNutz` (this public repository): root static site and GitHub Pages deployment.
-- `wholedonuts-universe` (private): preserved Porkbun integration, funnel definitions, orchestration code, and operational documentation. It is not a public web server.
+- The landing page includes Movement brochure structure, print guidance, and public contact information so the brochure can point directly back to the site.
+- The `?u=` query parameter restores a previously issued +U pass into the local browser storage for returning visits.
+- QR images are rendered through a third-party QR image service only when a visitor explicitly requests one from the page.
 
-## GitHub Pages
+## How it connects
 
-Publish from the `main` branch repository root after merging this change. The `CNAME` file binds the site to `justplususa.org`.
+- Web UI uses `@thewholedonuts/shared` + `@thewholedonuts/emotional-intelligence`
+- API services use `@thewholedonuts/emotional-intelligence`
+- CLI and apps compose package APIs
+- Root tests validate integration points across packages
 
-## Porkbun DNS
+## Quick start
 
-Use these records for the root deployment:
+```bash
+npm install
+npm run build
+npm test
+```
 
-| Type | Host | Answer | TTL |
-|---|---|---|---|
-| A | @ | 185.199.108.153 | 600 |
-| A | @ | 185.199.109.153 | 600 |
-| A | @ | 185.199.110.153 | 600 |
-| A | @ | 185.199.111.153 | 600 |
-| CNAME | www | thewholedonuts-beep.github.io | 600 |
+## Legacy static site
 
-No `tnc` or `awd` DNS records are required: the branches use `#tnc` and `#awd` routes on the primary domain, which avoids extra certificates and fragmented deployments.
-
-Do not deploy the `192.168.1.x` addresses in the private funnel configuration to public DNS; those are private placeholder addresses.
+The original static site files (`index.html`, `styles.css`, `app.js`, `CNAME`) are preserved at repository root for current GitHub Pages compatibility.

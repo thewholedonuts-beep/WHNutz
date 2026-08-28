@@ -1,0 +1,12 @@
+{
+  "name": "@thewholedonuts/emotional-intelligence",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "private": true,
+  "dependencies": {
+    "@thewholedonuts/shared": "1.0.0"
+  },
+  "scripts": {
+    "build": "node -e \"require('./src/index.js')\""
+  }
+}

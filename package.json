@@ -1,0 +1,15 @@
+{
+  "name": "thewholedonuts-universe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TheWholedonuts Universe monorepo",
+  "workspaces": [
+    "shared",
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -ws --if-present",
+    "test": "node --test tests/integration.test.js"
+  }
+}
