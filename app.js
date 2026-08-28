@@ -20,7 +20,7 @@ function syncBranch(){
   const id=location.hash.slice(1);
   links.forEach(a=>a.classList.toggle('active',a.dataset.branch===id));
   if(stores[id]){store.textContent=stores[id][0]+' ↗';store.href=stores[id][1]}
-  else{store.textContent='Open the menu';store.href='#home'}
+  else{store.textContent='The menu is at TheCounter';store.href='#home'}
 }
 
 const menuButtons=[...document.querySelectorAll('[data-menu]')];
