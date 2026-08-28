@@ -25,7 +25,7 @@ The persistent side rail keeps TNC and AWD available throughout the entry experi
 
 ## Repository responsibilities
 
-- `WHNutz` is the public source of truth for the `wenevergonnaclose.com` landing experience, root static site, and GitHub Pages deployment.
+- `WHNutz` is the public source of truth for the `wenevergonnaclose.com` landing experience, root static site, and GitHub Pages deployment. Private operational and orchestration notes remain outside this public site repository.
 
 ## GitHub Pages
 
