@@ -25,8 +25,7 @@ The persistent side rail keeps TNC and AWD available throughout the entry experi
 
 ## Repository responsibilities
 
-- `WHNutz` (this public repository): root static site and GitHub Pages deployment.
-- `wholedonuts-universe` (private): preserved Porkbun integration, funnel definitions, orchestration code, and operational documentation. It is not a public web server.
+- `WHNutz` is the public source of truth for the `wenevergonnaclose.com` landing experience, root static site, and GitHub Pages deployment.
 
 ## GitHub Pages
 
@@ -46,4 +45,4 @@ Use these records for the root deployment:
 
 No `tnc` or `awd` DNS records are required: the branches use `#tnc` and `#awd` routes on the primary domain, which avoids extra certificates and fragmented deployments.
 
-Do not deploy the `192.168.1.x` addresses in the private funnel configuration to public DNS; those are private placeholder addresses.
+Only publish the four GitHub Pages apex A records and the `www` CNAME listed above for the public entry domain.
