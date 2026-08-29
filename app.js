@@ -7,6 +7,11 @@ const stores={
 const memoryStore=new Map();
 const journeyOfferTitle=document.querySelector('#journey-offers-title');
 const journeyOfferCopy=document.querySelector('#journey-offers-copy');
+const virtualStoreTitle=document.querySelector('#virtual-store-title');
+const virtualStoreCopy=document.querySelector('#virtual-store-copy');
+const featuredProductTitle=document.querySelector('#featured-product-title');
+const featuredProductCopy=document.querySelector('#featured-product-copy');
+const templateLibraryCopy=document.querySelector('#template-library-copy');
 
 function safeGet(key){
   try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
@@ -100,6 +105,23 @@ function renderJourneyOffers(journey){
   }[journey.intent]||'a next step that fits today';
   journeyOfferTitle.textContent=branch+' picks, made for your '+journey.course+' appetite.';
   journeyOfferCopy.textContent='Start with '+intent+'. Your free next-step template is ready whenever you are.';
+  renderVirtualStore(journey,branch,intent);
+}
+function renderVirtualStore(journey,branch,intent){
+  if(!virtualStoreTitle||!virtualStoreCopy||!featuredProductTitle||!featuredProductCopy)return;
+  const featured={
+    learn:['Open Water Poster','A calm wall piece for keeping a good question close.'],
+    make:['Table Tote','For tools, notes, and the work you are ready to make real.'],
+    help:['4 ALL Everyday Tee','A soft, simple way to show that there is room at the table.'],
+    wander:['Counter Mug','For slow starts, fresh air, and finding your next step at your own pace.']
+  }[journey.intent]||['Everyday Tee','Soft, simple, and ready for the long way home.'];
+  virtualStoreTitle.textContent='Made by +U, 4 ALL - a little '+branch+' for your '+journey.course+' appetite.';
+  virtualStoreCopy.textContent='Since you came here for '+intent+', we pulled a few gentle ideas toward that direction. Browse at your own pace; this is a future Printful collection, with no merchandise order or payment collected here.';
+  featuredProductTitle.textContent=featured[0];
+  featuredProductCopy.textContent=featured[1];
+  if(templateLibraryCopy){
+    templateLibraryCopy.textContent='You said you came for '+intent+'. Start with a guide, make it your own, and keep only what helps. The library grows as the community leaves useful crumbs.';
+  }
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
