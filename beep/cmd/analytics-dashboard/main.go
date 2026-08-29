@@ -1,11 +1,10 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
-	"log"
 	"os"
+	"strings"
 	"sync"
 	"time"
 )
@@ -116,9 +115,9 @@ func (ad *AnalyticsDashboard) PrintDashboard() {
 	ad.mu.RLock()
 	defer ad.mu.RUnlock()
 
-	fmt.Println("\n" + "="*60)
+	fmt.Println("\n" + strings.Repeat("=", 60))
 	fmt.Println("📊 WholeDonut Analytics Dashboard")
-	fmt.Println("="*60)
+	fmt.Println(strings.Repeat("=", 60))
 
 	report := ad.GenerateReport()
 
@@ -130,9 +129,9 @@ func (ad *AnalyticsDashboard) PrintDashboard() {
 	fmt.Printf("📈 Avg Funnels per Domain: %.2f\n", report.AverageFunnelsPerDomain)
 	fmt.Printf("💚 Network Health: %s\n", report.NetworkHealth)
 
-	fmt.Println("\n" + "-"*60)
+	fmt.Println("\n" + strings.Repeat("-", 60))
 	fmt.Println("📍 Domain Metrics")
-	fmt.Println("-"*60)
+	fmt.Println(strings.Repeat("-", 60))
 
 	for _, metric := range ad.domainMetrics {
 		fmt.Printf("\n  %s\n", metric.Domain)
@@ -142,9 +141,9 @@ func (ad *AnalyticsDashboard) PrintDashboard() {
 		fmt.Printf("    Last Updated: %s\n", metric.LastUpdated.Format(time.RFC3339))
 	}
 
-	fmt.Println("\n" + "-"*60)
+	fmt.Println("\n" + strings.Repeat("-", 60))
 	fmt.Println("🔗 Funnel Metrics")
-	fmt.Println("-"*60)
+	fmt.Println(strings.Repeat("-", 60))
 
 	for _, metric := range ad.funnelMetrics {
 		fmt.Printf("\n  %s\n", metric.FunnelID)
@@ -155,7 +154,7 @@ func (ad *AnalyticsDashboard) PrintDashboard() {
 		fmt.Printf("    Thank You: %s\n", metric.ThankYouURL)
 	}
 
-	fmt.Println("\n" + "="*60 + "\n")
+	fmt.Println("\n" + strings.Repeat("=", 60) + "\n")
 }
 
 func main() {

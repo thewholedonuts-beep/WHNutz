@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/thewholedonuts-beep/wholedonuts-universe/pkg/domains"
 	"gopkg.in/yaml.v2"

@@ -40,4 +40,11 @@ Use these records for the root deployment:
 
 No additional brand-domain DNS records are required for the public experience: the branches use `#tnc` and `#awd` routes on the primary domain, which avoids extra certificates and fragmented deployments.
 
+Configure the other domains as URL forwards in Porkbun, preserving any path and query string:
+
+| Source | Forward to |
+|---|---|
+| `wholedonuts.org`, `wholedonuts.app`, `wholedonuts.buzz` | `https://wenevergonnaclose.com/#awd` |
+| `thenurturedchef.com`, `thenurturedchef.foundation`, `thenutur3dchef.com` | `https://wenevergonnaclose.com/#tnc` |
+
 Do not deploy the `192.168.1.x` addresses in the private funnel configuration to public DNS; those are private placeholder addresses.

@@ -11,6 +11,10 @@ at [wenevergonnaclose.com](https://wenevergonnaclose.com/). That site is the
 single public entry point for the +U experience and its Whole Donuts and The
 Nurtured Chef destinations.
 
+The managed GitHub Pages hostnames are `thewholedonuts-beep.github.io` and
+`thewholedonts-universe.github.io`. They are supporting hosts, not separate
+public entry points.
+
 This repository does not host a public landing page and must not claim the
 `wenevergonnaclose.com` custom domain. It contains the configuration and
 automation that support the broader ecosystem.

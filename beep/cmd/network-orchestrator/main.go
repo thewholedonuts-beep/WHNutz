@@ -195,7 +195,11 @@ func (nm *NetworkManager) ExportNetworkConfig(filename string) error {
 	nm.mu.RLock()
 	defer nm.mu.RUnlock()
 
-	config := NetworkConfig{Networks: nm.networks}
+	networks := make(map[string]NetworkDef, len(nm.networks))
+	for name, network := range nm.networks {
+		networks[name] = *network
+	}
+	config := NetworkConfig{Networks: networks}
 	data, err := json.MarshalIndent(config, "", "  ")
 	if err != nil {
 		return err
