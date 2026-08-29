@@ -168,6 +168,18 @@ main{margin-left:var(--rail)}
 .pass-actions button{border:2px solid var(--gold);background:transparent;color:#fff}
 .pass-help,
 .pass-fallback{font-size:.82rem;opacity:.86}
+.journey-offers{
+  margin-top:1rem;
+  padding:1rem;
+  border:2px solid var(--gold);
+  border-radius:1rem;
+  background:#fffaf0;
+  color:var(--ink)
+}
+.journey-offers h3{font:700 1.6rem Georgia,serif;margin:.25rem 0}
+.journey-offers p{line-height:1.5}
+.journey-offer-actions{display:flex;flex-wrap:wrap;gap:.7rem}
+.journey-offers-note{font-size:.82rem}
 .fine-print{margin-top:1.2rem;font-size:.78rem;line-height:1.55;opacity:.78}
 .fine-print details{margin-top:.6rem}
 .choices{
@@ -310,6 +322,7 @@ footer a{color:var(--ink);font-weight:900}
   .brochure-meta,
   .pass-actions{grid-template-columns:1fr;display:grid}
   .award-signin-actions{display:grid}
+  .journey-offer-actions{display:grid}
   .counter-head{display:block}
   .pass-card{align-items:flex-start}
   .pass-card img{width:7rem;height:7rem}

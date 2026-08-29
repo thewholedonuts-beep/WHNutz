@@ -18,6 +18,8 @@
 
 The QR contains only an award code. The recipient must verify with the email address assigned to that award; the database binds the award to the authenticated user and rejects a different email or a previously claimed award.
 
+The site uses only the three voluntary welcome answers (branch, menu course, and intent) to tailor the e-store and free-resource area. Those answers remain in the browser for anonymous visitors and are saved to the signed-in member's profile only after authentication.
+
 ## DNS and forwarding
 
 Only `wenevergonnaclose.com` serves the public site:

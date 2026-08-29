@@ -4,6 +4,7 @@ create extension if not exists pgcrypto;
 create table public.profiles (
   id uuid primary key references auth.users on delete cascade,
   display_name text check (char_length(display_name) between 1 and 80),
+  journey jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );

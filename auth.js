@@ -8,6 +8,7 @@ const memberGreeting = document.querySelector("#member-greeting");
 const greetingTitle = document.querySelector("#member-greeting-title");
 const greetingCopy = document.querySelector("#member-greeting-copy");
 const awardCode = new URLSearchParams(location.search).get("award");
+let journeySync;
 
 function isConfigured() {
   return authConfig.supabaseUrl && authConfig.supabaseAnonKey;
@@ -85,6 +86,29 @@ async function welcomeMember(supabase, user) {
   greetingCopy.textContent = greeting || "Your place at the table is here when you are ready.";
   memberGreeting.hidden = false;
   signInPanel.hidden = true;
+
+  journeySync = journey => supabase
+    .from("profiles")
+    .update({ journey })
+    .eq("id", user.id);
+  window.addEventListener("plusu:journey", async event => {
+    const { error: journeyError } = await journeySync(event.detail);
+    if (journeyError) {
+      console.error("Could not save the member journey.", journeyError);
+    }
+  });
+
+  try {
+    const savedJourney = localStorage.getItem("plusu-welcome");
+    if (savedJourney) {
+      const { error: journeyError } = await journeySync(JSON.parse(savedJourney));
+      if (journeyError) {
+        console.error("Could not restore the member journey.", journeyError);
+      }
+    }
+  } catch {
+    // Local storage is optional; a signed-in member can still continue without it.
+  }
 }
 
 loadAuth().catch(() => {

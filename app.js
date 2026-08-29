@@ -5,6 +5,8 @@ const stores={
   tnc:['Explore The Nurtured Chef','#tnc']
 };
 const memoryStore=new Map();
+const journeyOfferTitle=document.querySelector('#journey-offers-title');
+const journeyOfferCopy=document.querySelector('#journey-offers-copy');
 
 function safeGet(key){
   try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
@@ -66,7 +68,7 @@ function finishWelcome({scroll=true}={}){
   const branch=welcomeAnswers.branch;
   const course=welcomeAnswers.course||'bits';
   openCourse(course);
-  safeSet('plusu-welcome',JSON.stringify(welcomeAnswers));
+  saveJourney();
   gate.classList.add('complete');
   steps.forEach(step=>step.hidden=true);
   welcomeResult.hidden=false;
@@ -76,6 +78,28 @@ function finishWelcome({scroll=true}={}){
   welcomeResult.querySelector('span').textContent='We opened '+course.toUpperCase()+' first. Change courses anytime.';
   showQuestion(4);
   if(scroll)counter.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function saveJourney(){
+  const journey={
+    branch:welcomeAnswers.branch||'both',
+    course:welcomeAnswers.course||'bits',
+    intent:welcomeAnswers.intent||'wander'
+  };
+  safeSet('plusu-welcome',JSON.stringify(journey));
+  renderJourneyOffers(journey);
+  dispatchEvent(new CustomEvent('plusu:journey',{detail:journey}));
+}
+function renderJourneyOffers(journey){
+  if(!journeyOfferTitle||!journeyOfferCopy)return;
+  const branch=journey.branch==='awd'?'Whole Donuts':journey.branch==='tnc'?'The Nurtured Chef':'+U';
+  const intent={
+    learn:'a practical resource to explore',
+    make:'a small project to make real',
+    help:'a way to support the community',
+    wander:'room to look around at your own pace'
+  }[journey.intent]||'a next step that fits today';
+  journeyOfferTitle.textContent=branch+' picks, made for your '+journey.course+' appetite.';
+  journeyOfferCopy.textContent='Start with '+intent+'. Your free next-step template is ready whenever you are.';
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
