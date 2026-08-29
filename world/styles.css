@@ -159,6 +159,21 @@ h1 {
   transform: translateY(-1px);
 }
 
+.continue-button {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.continue-button:hover,
+.continue-button:focus-visible {
+  border-color: var(--glow);
+  color: var(--glow);
+}
+
 .progress-text {
   margin: 0;
   color: var(--muted);
@@ -303,7 +318,7 @@ h1 {
 }
 
 .customizer select,
-.customizer input[type="color"] {
+.customizer input {
   width: 100%;
   min-height: 44px;
   border-radius: 14px;
@@ -311,6 +326,10 @@ h1 {
   background: rgba(7, 8, 13, 0.8);
   color: var(--text);
   padding: 0.75rem;
+}
+
+.customizer input[type="color"] {
+  padding: 0.25rem;
 }
 
 .home-figure-card {

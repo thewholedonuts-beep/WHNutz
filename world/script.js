@@ -6,6 +6,8 @@ const unlockState = document.getElementById("unlockState");
 const customizer = document.getElementById("customizer");
 const poseSelect = document.getElementById("poseSelect");
 const accentInput = document.getElementById("accentInput");
+const creationInput = document.getElementById("creationInput");
+const continueButton = document.getElementById("continueButton");
 const pageShell = document.querySelector(".page-shell");
 
 const storageKey = "whole-donuts-landing-state";
@@ -118,7 +120,7 @@ function applyUrlState(state) {
 }
 
 function readState() {
-  const fallback = { completed: false, pose: "open", accent: "#ffb95e" };
+  const fallback = { completed: false, pose: "open", accent: "#ffb95e", creation: "" };
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
     return applyUrlState({ ...fallback, ...saved });
@@ -130,11 +132,15 @@ function readState() {
 function applyState(state) {
   poseSelect.value = state.pose;
   accentInput.value = state.accent;
+  creationInput.value = state.creation || "";
   progressText.textContent = state.completed
-    ? "The tunnel remembers you. Your figure is now part of the field."
+    ? state.creation
+      ? `The tunnel remembers you. "${state.creation}" is now part of the field.`
+      : "The tunnel remembers you. Your figure is now part of the field."
     : "The first figure is waiting for you.";
   unlockState.classList.toggle("locked", !state.completed);
   pageShell.classList.toggle("completed", state.completed);
+  continueButton.hidden = !state.completed;
   renderCustomFigure(state);
 }
 
@@ -150,6 +156,7 @@ customizer.addEventListener("input", () => {
   const state = readState();
   state.pose = poseSelect.value;
   state.accent = accentInput.value;
+  state.creation = creationInput.value.trim();
   saveState(state);
   applyState(state);
 });

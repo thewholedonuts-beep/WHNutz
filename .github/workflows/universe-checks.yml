@@ -11,6 +11,7 @@ on:
       - 'styles.css'
       - 'supabase/**'
       - 'templates/**'
+      - 'world/**'
       - '.github/workflows/universe-checks.yml'
   push:
     branches:
@@ -25,6 +26,7 @@ on:
       - 'styles.css'
       - 'supabase/**'
       - 'templates/**'
+      - 'world/**'
       - '.github/workflows/universe-checks.yml'
   workflow_dispatch:
 
@@ -48,4 +50,5 @@ jobs:
           node --check ../app.js
           node --check ../auth-config.js
           node --check ../auth.js
+          node --check ../world/script.js
       - run: go test ./...
