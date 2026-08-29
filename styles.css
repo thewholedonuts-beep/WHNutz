@@ -63,6 +63,64 @@ main{margin-left:var(--rail)}
   margin:.3rem 0 1.5rem
 }
 .lede{font-size:clamp(1.1rem,2vw,1.5rem);max-width:46rem}
+.welcome-scene{
+  margin:2rem 0;
+  padding:1.4rem;
+  max-width:70rem;
+  border:2px solid var(--ink);
+  border-radius:1.25rem;
+  background:linear-gradient(135deg,#b9e1e3,#fffaf0 60%,#e8d9b8);
+  box-shadow:8px 8px 0 var(--gold)
+}
+.stick-group{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap}
+.stick{width:4.2rem;height:7.2rem;position:relative}
+.stick .head{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:1.6rem;
+  height:1.6rem;
+  border:3px solid var(--ink);
+  border-radius:50%;
+  transform:translateX(-50%)
+}
+.stick .body{
+  position:absolute;
+  top:1.6rem;
+  left:50%;
+  width:0;
+  height:2.6rem;
+  border-left:3px solid var(--ink);
+  transform:translateX(-50%)
+}
+.stick .arm,
+.stick .leg{
+  position:absolute;
+  width:1.5rem;
+  border-top:3px solid var(--ink);
+  transform-origin:left center
+}
+.stick .arm.left{top:2.6rem;left:2rem;transform:rotate(155deg)}
+.stick .arm.right{top:2.6rem;left:2rem;transform:rotate(25deg)}
+.stick .leg.left{top:5rem;left:2rem;transform:rotate(130deg)}
+.stick .leg.right{top:5rem;left:2rem;transform:rotate(50deg)}
+.stick.happy .head::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:.2rem;
+  width:.65rem;
+  border-top:2px solid var(--ink);
+  border-radius:50%;
+  transform:translateX(-50%)
+}
+.stick.wave .arm.right{transform:rotate(-35deg)}
+.welcome-note{
+  max-width:38rem;
+  margin:1rem auto 0;
+  text-align:center;
+  font:700 clamp(1.4rem,3vw,2.2rem)/1.2 Georgia,serif
+}
 .template-library{
   margin:2rem 0;
   padding:1.5rem;
