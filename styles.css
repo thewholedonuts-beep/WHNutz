@@ -138,9 +138,11 @@ main{margin-left:var(--rail)}
   padding:1.2rem;
   border:2px solid var(--ink);
   border-radius:1rem;
-  background:linear-gradient(135deg,#dceef0,#fffaf0 55%,#e8d9b8)
+  background:
+    radial-gradient(circle at 90% 12%,#f9d87599,transparent 19rem),
+    linear-gradient(135deg,#b9e1e3,#fffaf0 55%,#e8d9b8)
 }
-.virtual-store h3{font:700 clamp(2rem,4vw,3.25rem)/1 Georgia,serif;margin:.25rem 0}
+.virtual-store h3{font:700 clamp(2rem,4vw,3.25rem)/1 Georgia,serif;margin:.25rem 0;color:var(--green)}
 .virtual-store>p{max-width:52rem;line-height:1.5}
 .product-grid{
   display:grid;
@@ -153,7 +155,7 @@ main{margin-left:var(--rail)}
   padding:1rem;
   border:1px solid #15130f66;
   border-radius:.9rem;
-  background:#fffdf8;
+  background:#fffdf8e8;
   display:flex;
   flex-direction:column
 }
