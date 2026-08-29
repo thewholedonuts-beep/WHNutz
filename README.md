@@ -1,6 +1,9 @@
 # Whole-Donuts
 
-WENEVERGONNACLOSE.COM
+Project homepage: https://github.com/thewholedonuts-beep/Whole-Donuts
+
+> Note: the previous `wenevergonnaclose.com` reference was removed because the
+> domain is no longer reachable.
 
 This repository now ships a static landing page for the Whole DoNuts / +U
 experience.
