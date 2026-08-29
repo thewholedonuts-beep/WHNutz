@@ -1,8 +1,8 @@
 const links=[...document.querySelectorAll('[data-branch]')];
 const store=document.querySelector('#branch-store');
 const stores={
-  awd:['Browse the Whole Donuts store','https://wholedonuts.buzz/'],
-  tnc:['Browse the chef store','https://thenutur3dchef.com/']
+  awd:['Explore Whole Donuts','#awd'],
+  tnc:['Explore The Nurtured Chef','#tnc']
 };
 const memoryStore=new Map();
 
