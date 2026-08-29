@@ -11,6 +11,7 @@ const virtualStoreTitle=document.querySelector('#virtual-store-title');
 const virtualStoreCopy=document.querySelector('#virtual-store-copy');
 const featuredProductTitle=document.querySelector('#featured-product-title');
 const featuredProductCopy=document.querySelector('#featured-product-copy');
+const templateLibraryCopy=document.querySelector('#template-library-copy');
 
 function safeGet(key){
   try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
@@ -118,6 +119,9 @@ function renderVirtualStore(journey,branch,intent){
   virtualStoreCopy.textContent='Since you came here for '+intent+', we pulled a few gentle ideas toward that direction. Browse at your own pace; this is a future Printful collection, with no merchandise order or payment collected here.';
   featuredProductTitle.textContent=featured[0];
   featuredProductCopy.textContent=featured[1];
+  if(templateLibraryCopy){
+    templateLibraryCopy.textContent='You said you came for '+intent+'. Start with a guide, make it your own, and keep only what helps. The library grows as the community leaves useful crumbs.';
+  }
 }
 document.querySelectorAll('[data-answer]').forEach(button=>{
   button.addEventListener('click',()=>{
