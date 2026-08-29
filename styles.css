@@ -91,6 +91,28 @@ main{margin-left:var(--rail)}
 .template-card p{line-height:1.5;min-height:4.5rem}
 .template-card a{display:inline-block;color:var(--ink);font-weight:900}
 .template-library-note{font-size:.9rem;font-weight:700}
+.ambassador-path{
+  margin:2rem 0;
+  padding:1.5rem;
+  max-width:70rem;
+  border:2px solid var(--ink);
+  border-radius:1.4rem;
+  background:var(--green);
+  color:#fff;
+  box-shadow:8px 8px 0 var(--gold)
+}
+.ambassador-path h2{font:700 clamp(2rem,5vw,4rem)/1 Georgia,serif;max-width:15ch;margin:.3rem 0 1rem;color:#fff}
+.ambassador-path>p{max-width:56rem;line-height:1.6}
+.ambassador-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin:1.2rem 0
+}
+.ambassador-grid article{padding:1.1rem;border:1px solid #ffffff77;border-radius:1rem;background:#ffffff12}
+.ambassador-grid h3{font:700 1.5rem Georgia,serif;margin:.1rem 0 .6rem;color:var(--gold)}
+.ambassador-grid p{line-height:1.5;margin:0}
+.ambassador-note{font-size:.9rem;font-weight:700}
 .award-signin,
 .member-greeting{
   margin:1.5rem 0;
@@ -379,6 +401,7 @@ footer a{color:var(--ink);font-weight:900}
   .course-grid,
   .product-grid,
   .template-grid,
+  .ambassador-grid,
   .choices,
   .brochure-grid,
   .brochure-meta,
