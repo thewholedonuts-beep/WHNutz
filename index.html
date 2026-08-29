@@ -22,6 +22,25 @@
       <h1 id="home-title">Pull up a seat.</h1>
       <p class="lede">Welcome in. Today’s menu is made by community: no judgment—just try, learn, and leave a crumb for the next person.</p>
 
+      <section class="award-signin" id="award-signin" hidden aria-labelledby="award-signin-title">
+        <p class="eyebrow">DEDICATION AWARD</p>
+        <h2 id="award-signin-title">Your place is saved.</h2>
+        <p id="award-signin-copy">Enter your email to receive a private sign-in link and continue where you left off.</p>
+        <form id="award-signin-form">
+          <label for="award-email">Email address</label>
+          <div class="award-signin-actions">
+            <input id="award-email" name="email" type="email" autocomplete="email" required>
+            <button type="submit">Send my sign-in link</button>
+          </div>
+        </form>
+        <p id="award-signin-status" aria-live="polite"></p>
+      </section>
+
+      <section class="member-greeting" id="member-greeting" hidden aria-live="polite">
+        <strong id="member-greeting-title">Welcome back.</strong>
+        <span id="member-greeting-copy">Your place at the table is here when you are ready.</span>
+      </section>
+
       <section class="welcome-gate" id="welcome-gate" aria-labelledby="welcome-title">
         <p class="eyebrow" id="welcome-progress">Question 1 of 3</p>
         <h2 id="welcome-title">Three questions. Then your seat is ready.</h2>
@@ -213,6 +232,8 @@
 
   <footer><span>+U Movement · Today’s menu and brochure are made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
   <noscript><p class="noscript-note">JavaScript is off, so the welcome gate and private +U pass tools are unavailable. You can still use the branch links and brochure guidance on this page.</p></noscript>
+  <script src="auth-config.js"></script>
+  <script type="module" src="auth.js"></script>
   <script src="app.js?v=movement4"></script>
 </body>
 </html>

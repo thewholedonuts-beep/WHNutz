@@ -63,6 +63,25 @@ main{margin-left:var(--rail)}
   margin:.3rem 0 1.5rem
 }
 .lede{font-size:clamp(1.1rem,2vw,1.5rem);max-width:46rem}
+.award-signin,
+.member-greeting{
+  margin:1.5rem 0;
+  padding:1.25rem;
+  max-width:48rem;
+  border:2px solid var(--ink);
+  border-radius:1rem;
+  background:var(--cream)
+}
+.award-signin h2{font:700 2rem Georgia,serif;margin:.25rem 0}
+.award-signin p,
+.member-greeting span{display:block;line-height:1.5}
+.award-signin form{margin-top:1rem}
+.award-signin label{display:block;font-weight:800}
+.award-signin-actions{display:flex;gap:.7rem;margin-top:.4rem}
+.award-signin input{min-width:0;flex:1;padding:.8rem;border:2px solid var(--ink);border-radius:.7rem;font:inherit}
+.award-signin button{border:0;border-radius:.7rem;padding:.8rem 1rem;background:var(--ink);color:#fff;font-weight:900;cursor:pointer}
+.member-greeting{border-color:var(--green);background:#dfe9de}
+.member-greeting strong{display:block;font:700 1.5rem Georgia,serif;margin-bottom:.3rem}
 .counter{
   margin:2rem 0;
   padding:1.2rem;
@@ -290,6 +309,7 @@ footer a{color:var(--ink);font-weight:900}
   .brochure-grid,
   .brochure-meta,
   .pass-actions{grid-template-columns:1fr;display:grid}
+  .award-signin-actions{display:grid}
   .counter-head{display:block}
   .pass-card{align-items:flex-start}
   .pass-card img{width:7rem;height:7rem}

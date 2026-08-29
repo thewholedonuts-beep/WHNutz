@@ -1,0 +1,40 @@
+# Launch setup
+
+## Supabase sign-in and Dedication Awards
+
+1. Create a Supabase project and enable **Email** under Authentication providers.
+2. In Authentication URL Configuration, add `https://wenevergonnaclose.com` as the Site URL and redirect URL.
+3. Run `supabase/migrations/20260829151500_dedication_awards.sql` in the Supabase SQL Editor.
+4. Copy the project URL and **anon** key (never the service-role key) into `auth-config.js`.
+5. Issue an award with a recipient email and a warm greeting:
+
+   ```sql
+   insert into public.dedication_awards (recipient_email, greeting)
+   values ('recipient@example.com', 'Your place at the table is here when you are ready.')
+   returning code;
+   ```
+
+6. Make the QR code point to `https://wenevergonnaclose.com/?award=THE_RETURNED_CODE`.
+
+The QR contains only an award code. The recipient must verify with the email address assigned to that award; the database binds the award to the authenticated user and rejects a different email or a previously claimed award.
+
+## DNS and forwarding
+
+Only `wenevergonnaclose.com` serves the public site:
+
+| Type | Host | Target |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `thewholedonuts-beep.github.io` |
+
+Use permanent URL forwards for both apex and `www` on the remaining domains:
+
+| Domains | Destination |
+|---|---|
+| `wholedonuts.org`, `wholedonuts.app`, `wholedonuts.buzz` | `https://wenevergonnaclose.com/#awd` |
+| `thenurturedchef.com`, `thenurturedchef.foundation`, `thenutur3dchef.com` | `https://wenevergonnaclose.com/#tnc` |
+
+Retain all email and verification records (MX, SPF, DKIM, DMARC, and TXT). Do not direct public traffic to the private `192.168.1.x` addresses in `beep/config/funnels.yaml`.
