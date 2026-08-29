@@ -133,6 +133,36 @@ main{margin-left:var(--rail)}
 .dish strong{display:block;margin-bottom:.45rem}
 .dish p{margin:0;line-height:1.5}
 .dish a{color:var(--ink);font-weight:900}
+.virtual-store{
+  margin-top:1.2rem;
+  padding:1.2rem;
+  border:2px solid var(--ink);
+  border-radius:1rem;
+  background:linear-gradient(135deg,#dceef0,#fffaf0 55%,#e8d9b8)
+}
+.virtual-store h3{font:700 clamp(2rem,4vw,3.25rem)/1 Georgia,serif;margin:.25rem 0}
+.virtual-store>p{max-width:52rem;line-height:1.5}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:.8rem;
+  margin:1rem 0
+}
+.product-card{
+  min-height:13rem;
+  padding:1rem;
+  border:1px solid #15130f66;
+  border-radius:.9rem;
+  background:#fffdf8;
+  display:flex;
+  flex-direction:column
+}
+.product-mark{font:700 1.1rem Georgia,serif;color:var(--berry);letter-spacing:.08em}
+.product-card h4{font:700 1.35rem Georgia,serif;margin:.8rem 0 .4rem}
+.product-card p{margin:0;line-height:1.45}
+.product-card small{margin-top:auto;padding-top:.8rem;font-weight:800;color:var(--green)}
+.virtual-store-note{font-size:.9rem;font-weight:700}
+.virtual-store-note a{color:var(--ink)}
 .change-box{
   margin-top:1rem;
   padding:1rem;
@@ -317,6 +347,7 @@ footer a{color:var(--ink);font-weight:900}
   .panel{padding:6rem 1.2rem 5rem}
   .course-tabs{grid-template-columns:repeat(2,1fr)}
   .course-grid,
+  .product-grid,
   .choices,
   .brochure-grid,
   .brochure-meta,
