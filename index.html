@@ -22,6 +22,25 @@
       <h1 id="home-title">Pull up a seat.</h1>
       <p class="lede">Welcome in. Today’s menu is made by community: no judgment—just try, learn, and leave a crumb for the next person.</p>
 
+      <section class="award-signin" id="award-signin" hidden aria-labelledby="award-signin-title">
+        <p class="eyebrow">DEDICATION AWARD</p>
+        <h2 id="award-signin-title">Your place is saved.</h2>
+        <p id="award-signin-copy">Enter your email to receive a private sign-in link and continue where you left off.</p>
+        <form id="award-signin-form">
+          <label for="award-email">Email address</label>
+          <div class="award-signin-actions">
+            <input id="award-email" name="email" type="email" autocomplete="email" required>
+            <button type="submit">Send my sign-in link</button>
+          </div>
+        </form>
+        <p id="award-signin-status" aria-live="polite"></p>
+      </section>
+
+      <section class="member-greeting" id="member-greeting" hidden aria-live="polite">
+        <strong id="member-greeting-title">Welcome back.</strong>
+        <span id="member-greeting-copy">Your place at the table is here when you are ready.</span>
+      </section>
+
       <section class="welcome-gate" id="welcome-gate" aria-labelledby="welcome-title">
         <p class="eyebrow" id="welcome-progress">Question 1 of 3</p>
         <h2 id="welcome-title">Three questions. Then your seat is ready.</h2>
@@ -101,8 +120,8 @@
         <section class="course" id="course-bombs" data-course="bombs" role="tabpanel" aria-labelledby="course-tab-bombs" hidden>
           <h3>BOMBS <small>· desserts &amp; the register</small></h3>
           <div class="course-grid">
-            <article class="dish"><strong>Whole Donuts store</strong><p><a href="https://wholedonuts.buzz/">Browse wholedonuts.buzz</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
-            <article class="dish"><strong>TNC chef store</strong><p><a href="https://thenutur3dchef.com/">Browse thenutur3dchef.com</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
+            <article class="dish"><strong>Whole Donuts store</strong><p><a href="#awd">Explore Whole Donuts</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
+            <article class="dish"><strong>TNC chef store</strong><p><a href="#tnc">Explore The Nurtured Chef</a><br><a href="https://cash.app/$wholedonuts">Pay $wholedonuts</a></p></article>
             <article class="dish" id="free-merch"><strong>Free merch &amp; information</strong><p>Community drops will appear here when available. No purchase is required to sit at the table.</p></article>
           </div>
 
@@ -122,6 +141,18 @@
               </div>
             </div>
           </div>
+
+          <section class="journey-offers" id="journey-offers" aria-labelledby="journey-offers-title">
+            <p class="eyebrow">YOUR NEXT BITE</p>
+            <h3 id="journey-offers-title">Start with what fits today.</h3>
+            <p id="journey-offers-copy">Answer the three welcome questions and this space will shape itself around what you came for.</p>
+            <div class="journey-offer-actions">
+              <a class="button primary" href="templates/plus-u-next-step-template.md">Get the free +U next-step template</a>
+              <a class="button store" href="https://cash.app/$wholedonuts">Support Whole Donuts</a>
+            </div>
+            <p class="journey-offers-note"><strong>Keep the table growing:</strong> support can be money, time, skills, materials, or a useful connection. Every contribution helps us pick up the crumbs, turn them into practical support, and make room for the next person. Financial gifts directly support sustainable Whole Donuts growth.</p>
+            <p class="journey-offers-note">Your answers guide this page on this device. Signed-in members can choose to carry that journey forward.</p>
+          </section>
 
           <div class="fine-print">
             <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page stores only the +U pass and last-visit time in this browser; opening a `?u=` link restores that pass in this browser, and clearing browser storage removes it. If you request a QR image, the encoded link is sent to a third-party QR image service to render it. Do not submit private, health, financial, or children’s information here.
@@ -189,9 +220,9 @@
       <h2 id="awd-title">Every appetite belongs.</h2>
       <p>Explore the Whole Donuts universe, community, and store. Come back to the Counter whenever you want another course.</p>
       <div class="actions">
-        <a class="button primary" href="https://wholedonuts.app/">Open Whole Donuts</a>
-        <a class="button primary" href="https://wholedonuts.org/">Community &amp; cause</a>
-        <a class="button store" href="https://wholedonuts.buzz/">Browse the .buzz store</a>
+        <a class="button primary" href="#awd">Open Whole Donuts</a>
+        <a class="button primary" href="#awd">Community &amp; cause</a>
+        <a class="button store" href="#awd">Browse the .buzz store</a>
         <a class="button store" href="https://cash.app/$wholedonuts">Pay $wholedonuts ↗</a>
       </div>
       <a class="back" href="#home">← Return to the Counter</a>
@@ -202,9 +233,9 @@
       <h2 id="tnc-title">Always treated by TNC.</h2>
       <p>Choose the chef experience, the foundation, or the Nutur3d Chef store. Everything returns to the community table.</p>
       <div class="actions">
-        <a class="button primary" href="https://thenurturedchef.com/">Open The Nurtured Chef</a>
-        <a class="button primary" href="https://thenurturedchef.foundation/">Foundation &amp; cause</a>
-        <a class="button store" href="https://thenutur3dchef.com/">Browse the chef store</a>
+        <a class="button primary" href="#tnc">Open The Nurtured Chef</a>
+        <a class="button primary" href="#tnc">Foundation &amp; cause</a>
+        <a class="button store" href="#tnc">Browse the chef store</a>
         <a class="button store" href="https://cash.app/$wholedonuts">Pay $wholedonuts ↗</a>
       </div>
       <a class="back" href="#home">← Return to the Counter</a>
@@ -213,6 +244,8 @@
 
   <footer><span>+U Movement · Today’s menu and brochure are made by community.</span><a id="branch-store" href="#home">Open the menu</a></footer>
   <noscript><p class="noscript-note">JavaScript is off, so the welcome gate and private +U pass tools are unavailable. You can still use the branch links and brochure guidance on this page.</p></noscript>
+  <script src="auth-config.js"></script>
+  <script type="module" src="auth.js"></script>
   <script src="app.js?v=movement4"></script>
 </body>
 </html>
