@@ -180,6 +180,33 @@ main{margin-left:var(--rail)}
   text-decoration:none
 }
 .template-library-note{font-size:.9rem;font-weight:700}
+.crumb-workshop{
+  margin-top:1.5rem;
+  padding:1.2rem;
+  border:2px solid var(--green);
+  border-radius:1rem;
+  background:#fffdf8cc
+}
+.crumb-workshop h3{font:700 1.7rem Georgia,serif;margin:.25rem 0}
+.crumb-workshop>p{line-height:1.5}
+.crumb-workshop form{display:grid;gap:.6rem;max-width:48rem}
+.crumb-workshop label{font-weight:800}
+.crumb-workshop select,
+.crumb-workshop input[type="url"],
+.crumb-workshop textarea{
+  width:100%;
+  padding:.8rem;
+  border:2px solid var(--ink);
+  border-radius:.7rem;
+  background:#fff;
+  color:var(--ink);
+  font:inherit
+}
+.crumb-workshop textarea{resize:vertical}
+.crumb-workshop .crumb-consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem;font-weight:700}
+.crumb-workshop button{justify-self:start;border:0;border-radius:.7rem;padding:.8rem 1rem;background:var(--green);color:#fff;font-weight:900;cursor:pointer}
+.crumb-note{font-size:.85rem}
+.crumb-note a{color:var(--ink);font-weight:900}
 .ambassador-path{
   margin:2rem 0;
   padding:1.5rem;
