@@ -169,6 +169,16 @@ main{margin-left:var(--rail)}
 .template-card h3{font:700 1.5rem Georgia,serif;margin:.5rem 0}
 .template-card p{line-height:1.5;min-height:4.5rem}
 .template-card a{display:inline-block;color:var(--ink);font-weight:900}
+.library-guide-link{
+  display:inline-block;
+  padding:.75rem 1rem;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  color:var(--ink);
+  background:#fffdf8;
+  font-weight:900;
+  text-decoration:none
+}
 .template-library-note{font-size:.9rem;font-weight:700}
 .ambassador-path{
   margin:2rem 0;
