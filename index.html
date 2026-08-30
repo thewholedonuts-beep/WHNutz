@@ -66,6 +66,29 @@
         </div>
         <p><a class="library-guide-link" href="WHOLE_DONUTS_GUIDE.md">Read the whole Whole Donuts guide</a></p>
         <p class="template-library-note">Bring any useful crumb, no matter where you gathered it. Choose what fits, skip what does not, and rewrite every prompt in your own words. No account is needed to use a template.</p>
+        <section class="crumb-workshop" aria-labelledby="crumb-workshop-title">
+          <p class="eyebrow">THE CRUMB WORKSHOP</p>
+          <h3 id="crumb-workshop-title">Leave something useful for the next person.</h3>
+          <p>Share an original lesson, a resource you have permission to recommend, or a source worth reviewing. Every crumb is reviewed before it is added to the public experience.</p>
+          <form id="crumb-form">
+            <label for="crumb-category">Where could it help?</label>
+            <select id="crumb-category" name="category" required>
+              <option value="">Choose a place</option>
+              <option value="world">Whole Donuts world</option>
+              <option value="library">+U Library</option>
+              <option value="ambassador">Ambassador Path</option>
+              <option value="support">Community support</option>
+            </select>
+            <label for="crumb-source">Source link, if there is one</label>
+            <input id="crumb-source" name="source" type="url" placeholder="https://example.com">
+            <label for="crumb-content">Your crumb</label>
+            <textarea id="crumb-content" name="content" rows="5" maxlength="2000" required placeholder="What is useful, who could it help, and how should someone begin?"></textarea>
+            <label class="crumb-consent"><input id="crumb-rights" name="rights" type="checkbox" required> I wrote this or have permission to share and recommend it.</label>
+            <button type="submit">Send this crumb for review</button>
+          </form>
+          <p id="crumb-status" aria-live="polite"></p>
+          <p class="crumb-note">We do not publish private, identifying, financial, health, or harmful information. Read the <a href="CRUMB_PROTOCOL.md">crumb protocol</a>.</p>
+        </section>
       </section>
 
       <section class="ambassador-path" aria-labelledby="ambassador-path-title">

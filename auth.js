@@ -8,6 +8,12 @@ const memberGreeting = document.querySelector("#member-greeting");
 const greetingTitle = document.querySelector("#member-greeting-title");
 const greetingCopy = document.querySelector("#member-greeting-copy");
 const awardCode = new URLSearchParams(location.search).get("award");
+const crumbForm = document.querySelector("#crumb-form");
+const crumbCategory = document.querySelector("#crumb-category");
+const crumbSource = document.querySelector("#crumb-source");
+const crumbContent = document.querySelector("#crumb-content");
+const crumbRights = document.querySelector("#crumb-rights");
+const crumbStatus = document.querySelector("#crumb-status");
 let journeySync;
 
 function isConfigured() {
@@ -16,6 +22,10 @@ function isConfigured() {
 
 function setStatus(message) {
   signInStatus.textContent = message;
+}
+
+function setCrumbStatus(message) {
+  crumbStatus.textContent = message;
 }
 
 function destinationUrl() {
@@ -28,6 +38,10 @@ function destinationUrl() {
 
 async function loadAuth() {
   if (!isConfigured()) {
+    crumbForm.addEventListener("submit", event => {
+      event.preventDefault();
+      setCrumbStatus("The crumb workshop opens after the member sign-in system is configured.");
+    });
     return;
   }
 
@@ -44,7 +58,8 @@ async function loadAuth() {
     return;
   }
 
-  if (session) {
+  let currentUser = session ? session.user : null;
+  if (currentUser) {
     await welcomeMember(supabase, session.user);
   }
 
@@ -63,6 +78,32 @@ async function loadAuth() {
     setStatus(signInError
       ? "We could not send the link. Please check the address and try again."
       : "Check your email for a private sign-in link.");
+  });
+
+  crumbForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (!currentUser) {
+      setCrumbStatus("Sign in with your email link first, then return here to send your crumb.");
+      signInPanel.hidden = false;
+      emailInput.focus();
+      return;
+    }
+
+    setCrumbStatus("Sending your crumb for review...");
+    const { error: crumbError } = await supabase.from("crumb_submissions").insert({
+      submitted_by: currentUser.id,
+      category: crumbCategory.value,
+      source_url: crumbSource.value.trim() || null,
+      content: crumbContent.value.trim(),
+      rights_confirmed: crumbRights.checked
+    });
+    if (crumbError) {
+      console.error("Could not submit crumb.", crumbError);
+      setCrumbStatus("We could not send that crumb. Please try again.");
+      return;
+    }
+    crumbForm.reset();
+    setCrumbStatus("Thank you. Your crumb is in the review queue.");
   });
 }
 
