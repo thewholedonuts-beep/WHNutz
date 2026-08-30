@@ -5,6 +5,7 @@ on:
     paths:
       - 'beep/**'
       - 'auth-config.js'
+      - 'storefront-config.js'
       - 'auth.js'
       - 'index.html'
       - 'app.js'
@@ -20,6 +21,7 @@ on:
     paths:
       - 'beep/**'
       - 'auth-config.js'
+      - 'storefront-config.js'
       - 'auth.js'
       - 'index.html'
       - 'app.js'
@@ -49,6 +51,7 @@ jobs:
       - run: |
           node --check ../app.js
           node --check ../auth-config.js
+          node --check ../storefront-config.js
           node --check ../auth.js
           node --check ../world/script.js
       - run: go test ./...
