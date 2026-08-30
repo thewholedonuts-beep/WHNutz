@@ -15,7 +15,7 @@ There is no single kind of person this is for. A maker, artist, trade profession
 | Community Counter | A voluntary three-question guide that helps visitors choose a branch, pace, and purpose for the visit. |
 | Ambassador Path | A route for people who want to grow a skill, lead a project, share experience, or support others. |
 | Dedication Award | A QR-based recognition path. A recipient verifies their email, then their award and returning journey belong to their account. |
-| Goods Window | A browse-only preview of Made by +U, 4 ALL merchandise while the future Printful store is prepared. |
+| Goods Window | A browse-only preview of Made by +U, 4 ALL merchandise while the future Shopify + Printful storefront is prepared. A Shop link appears only after its verified HTTPS URL is configured. |
 | Whole Donuts support | A voluntary Cash App support option. Financial support helps sustain Whole Donuts growth; time, skills, materials, and connections are also meaningful contributions. |
 
 ## What is a crumb?

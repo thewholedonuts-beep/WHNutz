@@ -329,6 +329,8 @@ main{margin-left:var(--rail)}
 .product-card h4{font:700 1.35rem Georgia,serif;margin:.8rem 0 .4rem}
 .product-card p{margin:0;line-height:1.45}
 .product-card small{margin-top:auto;padding-top:.8rem;font-weight:800;color:var(--green)}
+.storefront-status{font-size:.9rem;font-weight:800}
+.storefront-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin:1rem 0}
 .virtual-store-note{font-size:.9rem;font-weight:700}
 .virtual-store-note a{color:var(--ink)}
 .change-box{

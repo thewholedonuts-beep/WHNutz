@@ -12,6 +12,32 @@ const virtualStoreCopy=document.querySelector('#virtual-store-copy');
 const featuredProductTitle=document.querySelector('#featured-product-title');
 const featuredProductCopy=document.querySelector('#featured-product-copy');
 const templateLibraryCopy=document.querySelector('#template-library-copy');
+const storefrontStatus=document.querySelector('#storefront-status');
+const storefrontActions=document.querySelector('#storefront-actions');
+const storefrontConfig=window.WHNUTZ_STOREFRONT_CONFIG||{};
+
+function validStorefrontUrl(value){
+  if(typeof value!=='string'||!value.trim())return null;
+  try{
+    const url=new URL(value.trim());
+    return url.protocol==='https:'&&url.hostname&&!url.username&&!url.password?url.href:null;
+  }catch(e){return null}
+}
+
+function renderStorefrontHandoff(){
+  if(!storefrontStatus||!storefrontActions)return;
+  const storefrontUrl=validStorefrontUrl(storefrontConfig.storefrontUrl);
+  if(!storefrontUrl)return;
+  storefrontStatus.textContent='The Made by +U, 4 ALL shop is open in our separate storefront. Products, shipping, taxes, refunds, and checkout are handled there. Voluntary Cash App support remains separate and does not purchase merchandise.';
+  const storefrontCta=document.createElement('a');
+  storefrontCta.className='button primary';
+  storefrontCta.href=storefrontUrl;
+  storefrontCta.target='_blank';
+  storefrontCta.rel='noopener noreferrer';
+  storefrontCta.textContent='Shop Made by +U, 4 ALL ↗';
+  storefrontActions.append(storefrontCta);
+}
+renderStorefrontHandoff();
 
 function safeGet(key){
   try{return localStorage.getItem(key)}catch(e){return memoryStore.has(key)?memoryStore.get(key):null}
@@ -116,7 +142,7 @@ function renderVirtualStore(journey,branch,intent){
     wander:['Counter Mug','For slow starts, fresh air, and finding your next step at your own pace.']
   }[journey.intent]||['Everyday Tee','Soft, simple, and ready for the long way home.'];
   virtualStoreTitle.textContent='Made by +U, 4 ALL - a little '+branch+' for your '+journey.course+' appetite.';
-  virtualStoreCopy.textContent='Since you came here for '+intent+', we pulled a few gentle ideas toward that direction. Browse at your own pace; this is a future Printful collection, with no merchandise order or payment collected here.';
+  virtualStoreCopy.textContent='Since you came here for '+intent+', we pulled a few gentle ideas toward that direction. Browse at your own pace; this is a future Shopify + Printful collection, with no merchandise order or payment collected here.';
   featuredProductTitle.textContent=featured[0];
   featuredProductCopy.textContent=featured[1];
   if(templateLibraryCopy){

@@ -42,3 +42,7 @@ Use permanent URL forwards for both apex and `www` on the remaining domains:
 | `thenurturedchef.com`, `thenurturedchef.foundation`, `thenutur3dchef.com` | `https://wenevergonnaclose.com/#tnc` |
 
 Retain all email and verification records (MX, SPF, DKIM, DMARC, and TXT). Do not direct public traffic to the private `192.168.1.x` addresses in `beep/config/funnels.yaml`.
+
+## Storefront handoff
+
+Keep `storefront-config.js` committed with `storefrontUrl: ""` until the separate Shopify + Printful storefront is live and verified. After launch, set it to the full HTTPS storefront URL and publish this repository. This file is public configuration only: never add Shopify, Printful, payment, or service-role credentials. The site ignores missing, malformed, non-HTTPS, and credential-bearing URLs, leaving the Made by +U, 4 ALL Goods Window browse-only. Cash App remains voluntary support and does not purchase merchandise.
