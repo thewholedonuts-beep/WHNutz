@@ -84,6 +84,8 @@ main{margin-left:var(--rail)}
   margin:.3rem 0 1.5rem
 }
 .lede{font-size:clamp(1.1rem,2vw,1.5rem);max-width:46rem}
+.canonical-handoff{max-width:46rem;padding:.85rem 1rem;border-left:4px solid var(--green);background:#fffdf8;font-weight:700;line-height:1.5}
+.canonical-handoff a{color:var(--ink)}
 .welcome-scene{
   margin:2rem 0;
   padding:1.4rem;
@@ -349,7 +351,6 @@ main{margin-left:var(--rail)}
   cursor:pointer
 }
 .pass-card{display:flex;align-items:center;gap:1rem;margin-top:1rem}
-.pass-card img{width:9rem;height:9rem;background:#fff;padding:.4rem}
 .pass-card strong{display:block;color:var(--gold)}
 .pass-copy{display:grid;gap:.7rem}
 .pass-copy p{margin:0;line-height:1.5}
@@ -366,8 +367,7 @@ main{margin-left:var(--rail)}
 }
 .pass-actions a{background:#fff;color:var(--ink)}
 .pass-actions button{border:2px solid var(--gold);background:transparent;color:#fff}
-.pass-help,
-.pass-fallback{font-size:.82rem;opacity:.86}
+.pass-help{font-size:.82rem;opacity:.86}
 .journey-offers{
   margin-top:1rem;
   padding:1rem;
@@ -530,7 +530,6 @@ footer a{color:var(--ink);font-weight:900}
   .journey-offer-actions{display:grid}
   .counter-head{display:block}
   .pass-card{align-items:flex-start}
-  .pass-card img{width:7rem;height:7rem}
   .pass-actions a,
   .pass-actions button{width:100%}
   .choice{min-height:9rem}

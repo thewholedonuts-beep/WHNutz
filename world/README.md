@@ -1,19 +1,5 @@
-# Whole-Donuts
+# Whole Donuts world
 
-Project homepage: https://github.com/thewholedonuts-beep/Whole-Donuts
+This directory preserves the interactive Whole Donuts field used by the legacy WHNutz static experience. It is available at [`/world/`](./) when this repository is served through GitHub Pages.
 
-> Note: the previous `wenevergonnaclose.com` reference was removed because the
-> domain is no longer reachable.
-
-This repository now ships a static landing page for the Whole DoNuts / +U
-experience.
-
-## Local preview
-
-From `/home/runner/work/Whole-Donuts/Whole-Donuts`, run:
-
-```bash
-python3 -m http.server 4173
-```
-
-Then open `http://127.0.0.1:4173`.
+The maintained public +U site is [wenevergonnaclose.com](https://wenevergonnaclose.com/), which is deployed by the canonical `wholedonuts-universe` repository. The world stores its optional pose, color, and creation text only in the current browser; it does not send that information anywhere.
