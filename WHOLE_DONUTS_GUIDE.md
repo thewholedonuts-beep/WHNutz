@@ -14,7 +14,7 @@ There is no single kind of person this is for. A maker, artist, trade profession
 | +U Library | Free, editable guides for taking a next step, sharing something useful, and building a table around a project or cause. |
 | Community Counter | A voluntary three-question guide that helps visitors choose a branch, pace, and purpose for the visit. |
 | Ambassador Path | A route for people who want to grow a skill, lead a project, share experience, or support others. |
-| Dedication Award | A QR-based recognition path. A recipient verifies their email, then their award and returning journey belong to their account. |
+| Dedication Award | A recognition path that should be offered only through an owner-approved, privacy-reviewed sign-in flow. |
 | Goods Window | A browse-only preview of Made by +U, 4 ALL merchandise while the future Shopify + Printful storefront is prepared. A Shop link appears only after its verified HTTPS URL is configured. |
 | Whole Donuts support | A voluntary Cash App support option. Financial support helps sustain Whole Donuts growth; time, skills, materials, and connections are also meaningful contributions. |
 
@@ -37,8 +37,8 @@ Share only what you have the right to share. Do not include someone else's priva
 1. **Enter openly.** Use the world, community counter, and free library without an account.
 2. **Choose a next step.** Use a template, create something, or follow one useful lead.
 3. **Leave a crumb.** Share a lesson or contribution when and if it feels right.
-4. **Receive recognition.** A completed level or Dedication Award can provide a private QR invitation.
-5. **Verify and continue.** The QR opens an email magic-link sign-in so the recognition and voluntary journey can be saved securely.
+4. **Receive recognition.** A completed level or Dedication Award can provide a private invitation link through an approved flow.
+5. **Verify and continue.** If an owner-approved sign-in flow is available, verify there to save recognition and a voluntary journey.
 6. **Become an ambassador.** Build with the community or carry the learning independently. An ambassador can be creative, skilled-trade, community, or business focused.
 
 Recognition marks a completed path. It never measures a person's worth, rank, or right to belong.

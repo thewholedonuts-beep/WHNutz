@@ -30,6 +30,7 @@
       <p class="eyebrow">THE COMMUNITY COUNTER · <span id="daily-date">TODAY</span></p>
       <h1 id="home-title">Pull up a seat.</h1>
       <p class="lede">Welcome in. Today’s menu is made by community: no judgment—just try, learn, and leave a crumb for the next person.</p>
+      <p class="canonical-handoff"><strong>Live public site:</strong> the maintained +U experience is at <a href="https://wenevergonnaclose.com/" target="_blank" rel="noopener noreferrer">wenevergonnaclose.com</a>. This legacy site remains available as a static, local-only experience.</p>
 
       <section class="welcome-scene" aria-label="Stick figures welcoming you">
         <div class="stick-group" aria-hidden="true">
@@ -251,18 +252,16 @@
           </section>
 
           <div class="change-box">
-            <p><strong>Your bill:</strong> curiosity, cause, and effect.<br><strong>Your change:</strong> a private +U QR that is yours on this device.</p>
-            <button id="make-pass" type="button">Receive your +U change</button>
+            <p><strong>Your bill:</strong> curiosity, cause, and effect.<br><strong>Your change:</strong> a private +U link that stays on this device until you choose to copy it.</p>
+            <button id="make-pass" type="button">Show your private +U link</button>
             <div class="pass-card" id="pass-card" aria-live="polite" hidden>
-              <img id="pass-qr" alt="Your private +U QR" hidden>
               <div class="pass-copy">
-                <p><strong id="pass-name"></strong> This browser can keep your +U pass when you return through your private link. No name, face, or payment information is requested here.</p>
+                <p><strong id="pass-name"></strong> This browser can keep your +U pass when you return through your private link. No name, face, payment information, or identifier is sent to a QR provider.</p>
                 <div class="pass-actions">
                   <a id="open-pass-link" href="" target="_blank" rel="noopener noreferrer">Open my private +U link</a>
                   <button id="copy-pass-link" type="button">Copy my private +U link</button>
                 </div>
-                <p class="pass-help" id="pass-help">The QR image is requested from a third-party QR service only after you ask for it.</p>
-                <p class="pass-fallback" id="pass-fallback" hidden>QR image unavailable right now. Use your private +U link instead.</p>
+                <p class="pass-help" id="pass-help">This link is generated and stored only in this browser. Copy it only if you choose to share it.</p>
               </div>
             </div>
           </div>
@@ -280,7 +279,7 @@
           </section>
 
           <div class="fine-print">
-            <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page stores only the +U pass and last-visit time in this browser; opening a `?u=` link restores that pass in this browser, and clearing browser storage removes it. If you request a QR image, the encoded link is sent to a third-party QR image service to render it. Do not submit private, health, financial, or children’s information here.
+            <strong>At the register, plain and clear:</strong> +U passes are community identifiers, not money, currency, investments, ownership, prizes, gift cards, or promises of financial value. Purchases are optional and handled by the linked payment/store provider under its terms. Store availability, fulfillment, refunds, taxes, and product details must be confirmed before purchase. This page stores only the +U pass and last-visit time in this browser; opening a `?u=` link restores that pass in this browser, and clearing browser storage removes it. Do not submit private, health, financial, or children’s information here.
             <details><summary>Community table agreement</summary><p>Participate lawfully and respectfully. Community information is general information, not medical, legal, financial, or professional advice. No harassment, exploitation, impersonation, unsafe activity, or promises of guaranteed results. External links and community contributions remain the responsibility of their providers and authors.</p></details>
           </div>
         </section>

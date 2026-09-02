@@ -11,6 +11,7 @@ const continueButton = document.getElementById("continueButton");
 const pageShell = document.querySelector(".page-shell");
 
 const storageKey = "whole-donuts-landing-state";
+let temporaryState = "";
 const fieldFigures = [
   { x: 6, y: 50, scale: 1, tilt: "-4deg", pose: "open" },
   { x: 14, y: 26, scale: 0.88, tilt: "2deg", pose: "signal" },
@@ -97,7 +98,12 @@ function renderCustomFigure(state) {
 }
 
 function saveState(state) {
-  localStorage.setItem(storageKey, JSON.stringify(state));
+  temporaryState = JSON.stringify(state);
+  try {
+    localStorage.setItem(storageKey, temporaryState);
+  } catch {
+    // Private browsing can block storage; the interaction still works for this page visit.
+  }
 }
 
 function applyUrlState(state) {
@@ -122,10 +128,14 @@ function applyUrlState(state) {
 function readState() {
   const fallback = { completed: false, pose: "open", accent: "#ffb95e", creation: "" };
   try {
-    const saved = JSON.parse(localStorage.getItem(storageKey));
+    const saved = JSON.parse(localStorage.getItem(storageKey) || temporaryState || "null");
     return applyUrlState({ ...fallback, ...saved });
   } catch {
-    return applyUrlState(fallback);
+    try {
+      return applyUrlState({ ...fallback, ...JSON.parse(temporaryState || "null") });
+    } catch {
+      return applyUrlState(fallback);
+    }
   }
 }
 

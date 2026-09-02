@@ -6,17 +6,19 @@ Crumbs are useful contributions that can strengthen the Whole Donuts world, +U L
 
 ## Submission
 
-1. Sign in with the email link connected to your +U journey.
+1. Use the reviewed contribution path published on the maintained +U site, if one is available.
 2. Choose where the crumb can help.
 3. Add the original contribution or a source link.
 4. Confirm that you wrote it or have permission to share and recommend it.
-5. Send it to the review queue.
+5. Send it to the human review queue.
 
 ## Review
 
 Every submission begins as `pending`. A reviewer checks that it is useful, accurate enough for its stated purpose, respectful, safe to share, and allowed to be republished or linked. A reviewer can approve it, decline it, or request a clearer version.
 
 Approved crumbs are added deliberately to the relevant part of the public experience. Nothing is copied or published automatically from an outside source.
+
+The legacy WHNutz page does not collect or send crumbs. It remains non-interactive until the maintained site publishes a consent-based, human-reviewed contribution path.
 
 ## Boundaries
 
